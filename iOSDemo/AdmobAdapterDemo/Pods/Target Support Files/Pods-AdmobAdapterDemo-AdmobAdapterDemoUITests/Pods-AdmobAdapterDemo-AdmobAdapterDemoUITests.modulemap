@@ -1,0 +1,6 @@
+framework module Pods_AdmobAdapterDemo_AdmobAdapterDemoUITests {
+  umbrella header "Pods-AdmobAdapterDemo-AdmobAdapterDemoUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
