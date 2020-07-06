@@ -23,21 +23,9 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
     self = [super init];
     if (self) {
         self.nativeAd = nativeAd;
-        NSLog(@"self.nativeAd.data.imageMode=%ld",self.nativeAd.data.imageMode);
         NSURL *imageUrl = [[NSURL alloc]initWithString:self.nativeAd.data.imageAry[0].imageURL];
-        NSLog(@"imageUrl = %@",imageUrl);
-        
-        /*
-        NSData *data = [NSData dataWithContentsOfURL:imageUrl];
-
-        UIImage *image123 = [UIImage imageWithData: data];
-        NSLog(@"image123.image.size.height;%f",image123.size.height);
-        NSLog(@"image123.image.size.wight;%f",image123.size.width);
-        self.mappedImages = @[ [[GADNativeAdImage alloc] initWithImage:image123]];
-         */
         
         CGFloat scale = self.nativeAd.data.imageAry[0].width/(self.nativeAd.data.imageAry[0].height + 1e-4);
-        //NSLog(@"scale = %f",scale);
         self.mappedImages = @[[[GADNativeAdImage alloc] initWithURL:imageUrl scale:scale]];
     }
     return self;
@@ -45,15 +33,15 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 
 - (GADNativeAdImage *)buImageToGADImage:(BUImage *)buImage {
     NSURL *url = [NSURL URLWithString:buImage.imageURL];
-    NSLog(@"url = %@",url);
-    GADNativeAdImage *gadImage = [[GADNativeAdImage alloc] initWithURL:url scale: buImage.width / (buImage.height + 1e-4)];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [UIImage imageWithData: data];
+    GADNativeAdImage *gadImage = [[GADNativeAdImage alloc] initWithImage:image];
     return gadImage;
 }
 
 
 #pragma mark - getter methods
 - (BOOL)hasVideoContent {
-    NSLog(@"hasVideoContent");
     if (self.nativeAd.data.imageMode == BUFeedVideoAdModeImage){
         return YES;
     }
@@ -90,23 +78,18 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 }
 
 - (NSArray *)images {
-    NSLog(@"images");
-    GADNativeAdImage *gadImage = self.mappedImages[0];
-    NSLog(@"images");
-    NSLog(@"gadImage.image.size.height;%f",gadImage.image.size.height);
-    NSLog(@"gadImage.image.size.wight;%f",gadImage.image.size.width);
-     NSLog(@"gadImage.image.size.rl;%@",gadImage.imageURL);
-    return self.mappedImages;
-    /*
-     NSMutableArray *imgTemp = [[NSMutableArray alloc] initWithCapacity:self.nativeAd.data.imageAry.count];
+
+    //return self.mappedImages;
+    
+    NSMutableArray *imgTemp = [[NSMutableArray alloc] initWithCapacity:self.nativeAd.data.imageAry.count];
     
     
-    
+
     for (BUImage *img in self.nativeAd.data.imageAry) {
         [imgTemp addObject:[self buImageToGADImage:img]];
     }
     return [imgTemp copy];
-     */
+     
 }
 
 - (NSDictionary *)extraAssets {
