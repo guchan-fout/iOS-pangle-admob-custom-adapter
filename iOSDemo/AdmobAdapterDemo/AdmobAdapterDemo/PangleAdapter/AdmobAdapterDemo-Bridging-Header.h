@@ -3,5 +3,6 @@
 //
 
 #import "BUDAdmob_RewardCustomEventAdapter.h"
+#import "BUDAdmob_NativeFeedCustomEventAdapter.h"
 #import <BUAdSDK/BUAdSDK.h>
 #import <BUAdSDK/BUAdSDKManager.h>

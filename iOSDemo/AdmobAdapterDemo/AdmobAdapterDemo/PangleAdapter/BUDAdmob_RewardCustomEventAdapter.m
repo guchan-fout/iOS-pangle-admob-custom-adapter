@@ -16,15 +16,17 @@
 {
 }
 
-@property(nonatomic, weak, nullable) id<GADMediationRewardedAdEventDelegate> delegate;
+@property (nonatomic, weak, nullable) id<GADMediationRewardedAdEventDelegate> delegate;
 @property (nonatomic, strong) BURewardedVideoAd *rewardedVideoAd;
 @property (nonatomic, copy) GADMediationRewardedLoadCompletionHandler completionHandler;
 
 @end
 
-NSString *const PANGLE_PLACEMENT_ID = @"placementID";
+
 
 @implementation BUDAdmob_RewardCustomEventAdapter
+
+NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
 
 #pragma mark - GADMediationAdapter
 /// Returns the adapter version.
@@ -68,7 +70,6 @@ NSString *const PANGLE_PLACEMENT_ID = @"placementID";
     model.userId = @"your app user id";
     NSDictionary<NSString *, id> *credentials = adConfiguration.credentials.settings;
     NSString *placementID = [self processParams:(credentials[@"parameter"])];
-    [self processParams:(credentials[@"parameter"])];
     NSLog(@"placementID=%@",placementID);
     self.rewardedVideoAd = [[BURewardedVideoAd alloc] initWithSlotID:placementID rewardedVideoModel:model];
     self.rewardedVideoAd.delegate = self;
@@ -174,7 +175,7 @@ NSString *const PANGLE_PLACEMENT_ID = @"placementID";
         NSLog(@"This is NOT JSON data.[%@]", json);
         return nil;
     }
-    NSString *placementID = json[PANGLE_PLACEMENT_ID];
+    NSString *placementID = json[REWARD_PANGLE_PLACEMENT_ID];
     return placementID;
 }
 
