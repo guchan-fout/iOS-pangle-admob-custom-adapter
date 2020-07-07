@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1525124724AF282A0059C901 /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1525124624AF282A0059C901 /* UnifiedNativeAdView.xib */; };
 		1525124A24AF340B0059C901 /* BUDAdmob_NativeFeedCustomEventAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1525124924AF340B0059C901 /* BUDAdmob_NativeFeedCustomEventAdapter.m */; };
-		154484BD24B2BDD4006C68CF /* BUDAdmob_NativeFeedAdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 154484BC24B2BDD4006C68CF /* BUDAdmob_NativeFeedAdModel.m */; };
+		154484BD24B2BDD4006C68CF /* BUDAdmob_NativeFeedAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 154484BC24B2BDD4006C68CF /* BUDAdmob_NativeFeedAd.m */; };
 		15A87C9B24AC6B0F0018DE6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A87C9A24AC6B0F0018DE6D /* AppDelegate.swift */; };
 		15A87C9D24AC6B0F0018DE6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A87C9C24AC6B0F0018DE6D /* SceneDelegate.swift */; };
 		15A87C9F24AC6B0F0018DE6D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A87C9E24AC6B0F0018DE6D /* ViewController.swift */; };
@@ -49,8 +49,8 @@
 		1525124624AF282A0059C901 /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnifiedNativeAdView.xib; sourceTree = "<group>"; };
 		1525124824AF33E60059C901 /* BUDAdmob_NativeFeedCustomEventAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BUDAdmob_NativeFeedCustomEventAdapter.h; sourceTree = "<group>"; };
 		1525124924AF340B0059C901 /* BUDAdmob_NativeFeedCustomEventAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUDAdmob_NativeFeedCustomEventAdapter.m; sourceTree = "<group>"; };
-		154484BB24B2BDBE006C68CF /* BUDAdmob_NativeFeedAdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BUDAdmob_NativeFeedAdModel.h; sourceTree = "<group>"; };
-		154484BC24B2BDD4006C68CF /* BUDAdmob_NativeFeedAdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUDAdmob_NativeFeedAdModel.m; sourceTree = "<group>"; };
+		154484BB24B2BDBE006C68CF /* BUDAdmob_NativeFeedAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BUDAdmob_NativeFeedAd.h; sourceTree = "<group>"; };
+		154484BC24B2BDD4006C68CF /* BUDAdmob_NativeFeedAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUDAdmob_NativeFeedAd.m; sourceTree = "<group>"; };
 		15A87C9724AC6B0F0018DE6D /* AdmobAdapterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdmobAdapterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15A87C9A24AC6B0F0018DE6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15A87C9C24AC6B0F0018DE6D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +109,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		154484BE24B404C4006C68CF /* NativeAds */ = {
+			isa = PBXGroup;
+			children = (
+				154484BB24B2BDBE006C68CF /* BUDAdmob_NativeFeedAd.h */,
+				154484BC24B2BDD4006C68CF /* BUDAdmob_NativeFeedAd.m */,
+			);
+			path = NativeAds;
+			sourceTree = "<group>";
+		};
 		15A87C8E24AC6B0F0018DE6D = {
 			isa = PBXGroup;
 			children = (
@@ -171,13 +180,12 @@
 		15A87CD024ADCB2B0018DE6D /* PangleAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				154484BE24B404C4006C68CF /* NativeAds */,
 				15A87CD324ADCBD70018DE6D /* AdmobAdapterDemo-Bridging-Header.h */,
 				15A87CD224ADCBC30018DE6D /* BUDAdmob_RewardCustomEventAdapter.h */,
 				15A87CD424ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m */,
 				1525124824AF33E60059C901 /* BUDAdmob_NativeFeedCustomEventAdapter.h */,
 				1525124924AF340B0059C901 /* BUDAdmob_NativeFeedCustomEventAdapter.m */,
-				154484BB24B2BDBE006C68CF /* BUDAdmob_NativeFeedAdModel.h */,
-				154484BC24B2BDD4006C68CF /* BUDAdmob_NativeFeedAdModel.m */,
 			);
 			path = PangleAdapter;
 			sourceTree = "<group>";
@@ -482,7 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				154484BD24B2BDD4006C68CF /* BUDAdmob_NativeFeedAdModel.m in Sources */,
+				154484BD24B2BDD4006C68CF /* BUDAdmob_NativeFeedAd.m in Sources */,
 				1525124A24AF340B0059C901 /* BUDAdmob_NativeFeedCustomEventAdapter.m in Sources */,
 				15A87CCD24AD7C880018DE6D /* NativeAdViewController.swift in Sources */,
 				15A87C9F24AC6B0F0018DE6D /* ViewController.swift in Sources */,

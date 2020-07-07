@@ -93,14 +93,6 @@
                                     <action selector="onBackClick:" destination="T51-ws-IPE" eventType="touchUpInside" id="Vye-IY-baA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctK-TU-MJB">
-                                <rect key="frame" x="330" y="60" width="35" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Load"/>
-                                <connections>
-                                    <action selector="onLoadClick:" destination="T51-ws-IPE" eventType="touchUpInside" id="JKQ-a9-f2p"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="TTy-UO-j6x"/>

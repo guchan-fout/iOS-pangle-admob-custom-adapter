@@ -1,5 +1,5 @@
 //
-//  BUDAdmob_NativeFeedAdModel.h
+//  BUDAdmob_NativeFeedAd.h
 //  AdmobAdapterDemo
 //
 //  Created by Gu Chan on 2020/07/06.
@@ -9,10 +9,7 @@
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #import <BUAdSDK/BUAdSDK.h>
 
-@interface BUDAdmob_NativeFeedAdModel: NSObject <GADMediatedUnifiedNativeAd>
-
-@property (nonatomic, strong) BUNativeAd *nativeAd;
-@property (nonatomic, strong) BUNativeAdRelatedView *relatedView;
+@interface BUDAdmob_NativeFeedAd: NSObject <GADMediatedUnifiedNativeAd>
 
 - (instancetype)initWithBUNativeAd:(BUNativeAd *)nativeAd;
 

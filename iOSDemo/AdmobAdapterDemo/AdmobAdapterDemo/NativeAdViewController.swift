@@ -18,6 +18,7 @@ class NativeAdViewController: UIViewController, GADVideoControllerDelegate {
     var nativeAdView: GADUnifiedNativeAdView!
     
     /// The ad unit ID.
+    //adUnitID = "ca-app-pub-3940256099942544/3986624511" is test id from admob
     let adUnitID = "ca-app-pub-2748478898138855/8222002816"
     
     /// The height constraint applied to the ad view, where necessary.
@@ -55,8 +56,9 @@ class NativeAdViewController: UIViewController, GADVideoControllerDelegate {
     func setAdView(_ view: GADUnifiedNativeAdView) {
         // Remove the previous ad view.
         nativeAdView = view
+        nativeAdView.isHidden = true
         let screenSize: CGRect = UIScreen.main.bounds
-        let containerView = UIView(frame: CGRect(x: 0, y: 100, width: screenSize.width - 10, height: 300))
+        let containerView = UIView(frame: CGRect(x: 0, y: 100, width: screenSize.width, height: 300))
         
         containerView.addSubview(nativeAdView)
         self.view.addSubview(containerView)
@@ -92,7 +94,7 @@ extension NativeAdViewController: GADAdLoaderDelegate {
 extension NativeAdViewController: GADUnifiedNativeAdLoaderDelegate {
     
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADUnifiedNativeAd) {
-        
+        nativeAdView.isHidden = false
         // Set ourselves as the native ad delegate to be notified of native ad events.
         nativeAd.delegate = self
         

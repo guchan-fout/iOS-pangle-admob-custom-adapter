@@ -10,13 +10,12 @@
 #import <BUAdSDK/BUAdSDK.h>
 #import <GoogleMobileAds/GADCustomEventNativeAd.h>
 #import <GoogleMobileAds/GADMultipleAdsAdLoaderOptions.h>
-#import "BUDAdmob_NativeFeedAdModel.h"
+#import "BUDAdmob_NativeFeedAd.h"
 
 
 @interface BUDAdmob_NativeFeedCustomEventAdapter ()<GADCustomEventNativeAd,BUNativeAdsManagerDelegate>
 
 @property (nonatomic, strong, getter=getNativeAd)BUNativeAdsManager *adManager;
-@property (nonatomic, strong) id nativeAd;
 
 @end
 
@@ -31,6 +30,7 @@ NSString *const FEED_PANGLE_PLACEMENT_ID = @"placementID";
 - (void)getNativeAd:(NSString *)placementID count:(NSInteger)count {
     if (self.adManager == nil) {
         BUAdSlot *slot = [[BUAdSlot alloc] init];
+        //slot.ID = @"945292641" for video
         slot.ID = placementID;
         slot.AdType = BUAdSlotAdTypeFeed;
         slot.position = BUAdSlotPositionTop;
@@ -67,9 +67,9 @@ NSString *const FEED_PANGLE_PLACEMENT_ID = @"placementID";
 - (void)nativeAdsManagerSuccessToLoad:(BUNativeAdsManager *)adsManager nativeAds:(NSArray<BUNativeAd *> *_Nullable)nativeAdDataArray {
 
     for (BUNativeAd * nativeAd in nativeAdDataArray) {
-        BUDAdmob_NativeFeedAdModel *model = [[BUDAdmob_NativeFeedAdModel alloc] initWithBUNativeAd:nativeAd];
+        BUDAdmob_NativeFeedAd *ad = [[BUDAdmob_NativeFeedAd alloc] initWithBUNativeAd:nativeAd];
 
-        [self.delegate customEventNativeAd:self didReceiveMediatedUnifiedNativeAd:model];
+        [self.delegate customEventNativeAd:self didReceiveMediatedUnifiedNativeAd:ad];
     }
 }
 
@@ -77,6 +77,7 @@ NSString *const FEED_PANGLE_PLACEMENT_ID = @"placementID";
     NSLog(@"%s",__func__);
     [self.delegate customEventNativeAd:self didFailToLoadWithError:error];
 }
+
 
 - (NSString *)processParams:(NSString *)param {
     NSError *jsonReadingError;

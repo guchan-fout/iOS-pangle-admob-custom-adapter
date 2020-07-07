@@ -83,7 +83,7 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
     if ([_rewardedVideoAd isAdValid]) {
         [_rewardedVideoAd showAdFromRootViewController:viewController ritScene:0 ritSceneDescribe:nil];
     } else {
-        NSLog(@"No ads to show.");
+        NSLog(@"No Pange reward ads to show.");
         NSError *error =
         [NSError errorWithDomain:@"GADMediationAdapterSampleAdNetwork"
                             code:0

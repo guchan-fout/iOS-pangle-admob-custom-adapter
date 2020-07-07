@@ -36,8 +36,6 @@ class RewardVideoController: UIViewController, GADRewardedAdDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func onLoadClick(_ sender: Any) {
-    }
     
     override func viewDidDisappear(_ animated: Bool) {
         self.rewardedAd = nil
