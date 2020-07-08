@@ -65,6 +65,10 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 }
 
 - (nullable UIView *)mediaView {
+    UIImageView *logoView = self.relatedView.logoImageView;
+    CGRect parentFrame = self.relatedView.videoAdView.frame;
+    logoView.frame = CGRectMake(parentFrame.size.width-20, parentFrame.size.height-20, 20, 20);
+    [self.relatedView.videoAdView addSubview:logoView];
     return self.relatedView.videoAdView;
 }
 
@@ -114,6 +118,12 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
     }
     return 0.0f;
 }
+
+
+- (nullable UIView *)adChoicesView {
+    return nil;
+}
+
 
 - (void)didRenderInView:(nonnull UIView *)view
     clickableAssetViews:
