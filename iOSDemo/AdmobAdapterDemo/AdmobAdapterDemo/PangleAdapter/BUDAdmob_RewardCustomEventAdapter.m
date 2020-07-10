@@ -1,9 +1,9 @@
 //
 //  BUDAdmob_RewardCustomEventAdapter.m
-//  BUDemo
+//  AdmobAdapterDemo
 //
-//  Created by bytedance_yuanhuan on 2018/4/11.
-//  Copyright © 2018年 bytedance. All rights reserved.
+//  Created by Gu Chan on 2020/07/03.
+//  Copyright © 2020 GuChan. All rights reserved.
 //
 
 #import "BUDAdmob_RewardCustomEventAdapter.h"
@@ -71,10 +71,14 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
     NSDictionary<NSString *, id> *credentials = adConfiguration.credentials.settings;
     NSString *placementID = [self processParams:(credentials[@"parameter"])];
     NSLog(@"placementID=%@",placementID);
-    self.rewardedVideoAd = [[BURewardedVideoAd alloc] initWithSlotID:placementID rewardedVideoModel:model];
-    self.rewardedVideoAd.delegate = self;
-    [self.rewardedVideoAd loadAdData];
-    self.completionHandler = completionHandler;
+    if (placementID != nil){
+        self.rewardedVideoAd = [[BURewardedVideoAd alloc] initWithSlotID:placementID rewardedVideoModel:model];
+        self.rewardedVideoAd.delegate = self;
+        [self.rewardedVideoAd loadAdData];
+        self.completionHandler = completionHandler;
+    } else {
+        NSLog(@"no pangle placement ID for requesting.");
+    }
 }
 
 
@@ -108,7 +112,7 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
     if (self.completionHandler) {
         self.completionHandler(nil, error);
     }
-    NSLog(@"%s", __func__);
+    NSLog(@"rewardedVideoAd with error %@", error.description);
 }
 
 - (void)rewardedVideoAdWillVisible:(BURewardedVideoAd *)rewardedVideoAd {

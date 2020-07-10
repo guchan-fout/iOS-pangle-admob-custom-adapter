@@ -52,7 +52,11 @@ NSString *const FEED_PANGLE_PLACEMENT_ID = @"placementID";
     }
     NSString *placementID = [self processParams:serverParameter];
     NSLog(@"placementID=%@",placementID);
-    [self getNativeAd:placementID count:count];
+    if (placementID != nil){
+        [self getNativeAd:placementID count:count];
+    } else {
+        NSLog(@"no pangle placement ID for requesting.");
+    }
 }
 
 - (BOOL)handlesUserClicks {

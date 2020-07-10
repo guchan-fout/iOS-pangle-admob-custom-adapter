@@ -4,5 +4,6 @@
 
 #import "BUDAdmob_RewardCustomEventAdapter.h"
 #import "BUDAdmob_NativeFeedCustomEventAdapter.h"
+#import "BUDAdmob_FullScreenVideoCustomEventAdapter.h"
 #import <BUAdSDK/BUAdSDK.h>
 #import <BUAdSDK/BUAdSDKManager.h>

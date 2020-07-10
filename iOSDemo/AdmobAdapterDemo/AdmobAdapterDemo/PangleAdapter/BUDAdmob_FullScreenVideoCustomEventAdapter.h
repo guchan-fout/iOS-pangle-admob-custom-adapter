@@ -1,16 +1,17 @@
 //
-//  BUDAdmob_RewardCustomEventAdapter.h
+//  BUDAdmob_FullScreenVideoCustomEventAdapter.h
 //  AdmobAdapterDemo
 //
 //  Created by Gu Chan on 2020/07/03.
 //  Copyright © 2020 GuChan. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface BUDAdmob_RewardCustomEventAdapter : NSObject<GADMediationAdapter>
+NS_ASSUME_NONNULL_BEGIN
 
-- (NSString *)processParams:(NSString *)param;
+@interface BUDAdmob_FullScreenVideolCustomEventAdapter : NSObject <GADCustomEventInterstitial>
 
 @end
+
+NS_ASSUME_NONNULL_END
