@@ -74,7 +74,7 @@ NSString *const FEED_PANGLE_PLACEMENT_ID = @"placementID";
 }
 
 - (void)nativeAdsManager:(BUNativeAdsManager *)adsManager didFailWithError:(NSError *_Nullable)error {
-    NSLog(@"%s",__func__);
+    NSLog(@"nativeAdsManager with error %@", error.description);
     [self.delegate customEventNativeAd:self didFailToLoadWithError:error];
 }
 
