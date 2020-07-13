@@ -67,7 +67,7 @@
 
 - Set info
 
- - **Class Name**: [packagename].[adaptername], for example,`com.bytedance.pangle.admob.adapter.demo.pangle.adapter.AdmobRewardVideoAdapter`mediation-param
+ - **Class Name**: the adapter class's name , for example,`BUDAdmob_RewardCustomEventAdapter`
 
  - **Parameter**: Add {"placementID": "[your placement ID on Pangle](#placementID)"} to Parameter.
 
@@ -76,9 +76,9 @@
 <img src="./pics/mediation-param.png" alt="drawing" width="400"/>
 
 
-- Add adapter's [packagename].[adaptername] to Class Name.
+- Add adapter's class name to Class Name.
 
-- Add {"slotID": "your slot ID"} to Parameter.
+- Add {"placementID": "your slot ID"} to Parameter.
 
 **Please make sure to use JSON to set Parameter. Or you need to customize adapter yourself.**
 
@@ -86,9 +86,18 @@
 ## Initialize Pangle SDK and Adapter
 
 ### Initialize Pangle SDK
-- Please refer to [SDK Integration](https://partner.oceanengine.com/union/media/union/download/detail?id=20&docId=5de8daa525b16b00113af113&osType=android) to intergrate Pangle SDK in your application.
+- Please refer to [SDK Integration](https://partner.oceanengine.com/union/media/union/download/detail?id=2&osType=ios) to intergrate Pangle SDK in your application.
 
  * **Please use [app ID](#app-id) to initialize Pangle SDK.**
 
 ### Embed Pangle Adapters
-- You can find Adapters for different ad format [here](https://github.com/guchan-fout/pangle-admob-custom-adapter/tree/master/AndroidDemo/AdmobAdapterDemo/app/src/main/java/com/bytedance/pangle/admob/adapter/demo/pangle/adapter) , embed them in your app and they can be used with no code change. Also you can customize it for your use case. You can find simple use cases from [Demo](https://github.com/guchan-fout/pangle-admob-custom-adapter/tree/master/AndroidDemo/AdmobAdapterDemo).
+- You can find Adapters for different ad format [here](https://github.com/guchan-fout/iOS-pangle-admob-custom-adapter/tree/master/iOSDemo/AdmobAdapterDemo/AdmobAdapterDemo/PangleAdapter) , embed them in your app and they can be used with no code change. Also you can customize it for your use case. You can find simple use cases from [Demo](https://github.com/guchan-fout/iOS-pangle-admob-custom-adapter/tree/master/iOSDemo/AdmobAdapterDemo/AdmobAdapterDemo).
+
+- You need to add these two files into your project to support native ad's adapter [mapping](https://developers.google.com/admob/ios/native/native-custom-events#map_native_ads).
+
+<img src="./pics/native-ads-folder.png" alt="drawing" width="400"/>
+
+### About Swift
+- If your project is based on Swift, please add adapter's header file into your bridge-header file.
+
+<img src="./pics/bridge-header.png" alt="drawing" width="400"/>
