@@ -91,7 +91,7 @@
  * **Please use [app ID](#app-id) to initialize Pangle SDK.**
 
 ### Embed Pangle Adapters
-- You can find Adapters for different ad format [here](https://github.com/guchan-fout/iOS-pangle-admob-custom-adapter/tree/master/iOSDemo/AdmobAdapterDemo/AdmobAdapterDemo/PangleAdapter) , embed them in your app and they can be used with no code change. Also you can customize it for your use case. You can find simple use cases from [Demo](https://github.com/guchan-fout/iOS-pangle-admob-custom-adapter/tree/master/iOSDemo/AdmobAdapterDemo/AdmobAdapterDemo).
+- You can find Adapters for different ad formats [here](https://github.com/guchan-fout/iOS-pangle-admob-custom-adapter/tree/master/AdmobAdapterDemo/PangleAdapter) , embed them in your app and they can be used with no code changes. Also you can customize it for your use case. You can find simple use cases from [Demo](https://github.com/guchan-fout/iOS-pangle-admob-custom-adapter/tree/master/AdmobAdapterDemo).
 
 - You need to add these two files into your project to support native ad's adapter [mapping](https://developers.google.com/admob/ios/native/native-custom-events#map_native_ads).
 
