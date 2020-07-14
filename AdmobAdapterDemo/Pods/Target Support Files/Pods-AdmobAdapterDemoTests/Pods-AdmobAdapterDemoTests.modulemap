@@ -1,6 +1,0 @@
-framework module Pods_AdmobAdapterDemoTests {
-  umbrella header "Pods-AdmobAdapterDemoTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
