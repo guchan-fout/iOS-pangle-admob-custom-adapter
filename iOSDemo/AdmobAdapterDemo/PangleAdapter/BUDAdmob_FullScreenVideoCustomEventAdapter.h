@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BUDAdmob_FullScreenVideolCustomEventAdapter : NSObject <GADCustomEventInterstitial>
+@interface BUDAdmob_FullScreenVideoCustomEventAdapter : NSObject <GADCustomEventInterstitial>
 
 @end
 

@@ -8,11 +8,11 @@
 #import "BUDAdmob_FullScreenVideoCustomEventAdapter.h"
 #import <BUAdSDK/BUAdSDK.h>
 
-@interface BUDAdmob_FullScreenVideolCustomEventAdapter() <BUFullscreenVideoAdDelegate>
+@interface BUDAdmob_FullScreenVideoCustomEventAdapter() <BUFullscreenVideoAdDelegate>
 @property (nonatomic, strong) BUFullscreenVideoAd *fullScreenVideo;
 @end
 
-@implementation BUDAdmob_FullScreenVideolCustomEventAdapter
+@implementation BUDAdmob_FullScreenVideoCustomEventAdapter
 @synthesize delegate;
 NSString *const INTERSTITIAL_PANGLE_PLACEMENT_ID = @"placementID";
 

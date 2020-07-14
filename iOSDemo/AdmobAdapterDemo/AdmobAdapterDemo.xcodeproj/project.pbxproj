@@ -124,6 +124,7 @@
 		15A87C8E24AC6B0F0018DE6D = {
 			isa = PBXGroup;
 			children = (
+				15A87CD024ADCB2B0018DE6D /* PangleAdapter */,
 				15A87C9924AC6B0F0018DE6D /* AdmobAdapterDemo */,
 				15A87CB024AC6B120018DE6D /* AdmobAdapterDemoTests */,
 				15A87CBB24AC6B120018DE6D /* AdmobAdapterDemoUITests */,
@@ -146,7 +147,7 @@
 		15A87C9924AC6B0F0018DE6D /* AdmobAdapterDemo */ = {
 			isa = PBXGroup;
 			children = (
-				15A87CD024ADCB2B0018DE6D /* PangleAdapter */,
+				15A87CD324ADCBD70018DE6D /* AdmobAdapterDemo-Bridging-Header.h */,
 				15A87C9A24AC6B0F0018DE6D /* AppDelegate.swift */,
 				15A87C9C24AC6B0F0018DE6D /* SceneDelegate.swift */,
 				15A87C9E24AC6B0F0018DE6D /* ViewController.swift */,
@@ -186,7 +187,6 @@
 				1547DD2D24B84A0A00075E41 /* BUDAdmob_FullScreenVideoCustomEventAdapter.h */,
 				1547DD2E24B84A0A00075E41 /* BUDAdmob_FullScreenVideoCustomEventAdapter.m */,
 				154484BE24B404C4006C68CF /* NativeAds */,
-				15A87CD324ADCBD70018DE6D /* AdmobAdapterDemo-Bridging-Header.h */,
 				15A87CD224ADCBC30018DE6D /* BUDAdmob_RewardCustomEventAdapter.h */,
 				15A87CD424ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m */,
 				1525124824AF33E60059C901 /* BUDAdmob_NativeFeedCustomEventAdapter.h */,
@@ -609,6 +609,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -663,6 +664,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -681,6 +683,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6RCYD83376;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities/GoogleUtilities.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb/nanopb.framework/Headers\"",
+					"\"${PODS_TARGET_SRCROOT}/Sources/FBLPromises/include\"",
+				);
 				INFOPLIST_FILE = AdmobAdapterDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -688,7 +697,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = GuChan.AdmobAdapterDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "AdmobAdapterDemo/PangleAdapter/AdmobAdapterDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "AdmobAdapterDemo/AdmobAdapterDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -703,6 +712,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6RCYD83376;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities/GoogleUtilities.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb/nanopb.framework/Headers\"",
+					"\"${PODS_TARGET_SRCROOT}/Sources/FBLPromises/include\"",
+					"$(SRCROOT)",
+				);
 				INFOPLIST_FILE = AdmobAdapterDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -710,7 +727,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = GuChan.AdmobAdapterDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "AdmobAdapterDemo/PangleAdapter/AdmobAdapterDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "AdmobAdapterDemo/AdmobAdapterDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
