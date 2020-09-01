@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -21,11 +21,12 @@
                         <segue destination="T51-ws-IPE" kind="presentation" identifier="moveToReward" modalPresentationStyle="currentContext" id="Smy-lj-K9e"/>
                         <segue destination="2tU-Ue-2bA" kind="presentation" identifier="moveToIntersVideo" id="kUf-9b-gHz"/>
                         <segue destination="Cae-Jk-Mi2" kind="presentation" identifier="moveToNativeFeed" id="ut6-Bw-Cr0"/>
+                        <segue destination="YCk-vE-m0c" kind="presentation" identifier="moveToTemplateNativeFeed" id="78V-8m-HqY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-600" y="126"/>
+            <point key="canvasLocation" x="-675" y="102"/>
         </scene>
         <!--Interstitial Video View Controller-->
         <scene sceneID="Dks-iW-LNm">
@@ -102,6 +103,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jmd-xq-fTM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1062" y="-131"/>
+        </scene>
+        <!--Template Native Feed Ad View Controller-->
+        <scene sceneID="wQn-EI-cTU">
+            <objects>
+                <viewController modalPresentationStyle="currentContext" id="YCk-vE-m0c" customClass="TemplateNativeFeedAdViewController" customModule="AdmobAdapterDemo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="knB-hN-q0K">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQg-UL-lOr">
+                                <rect key="frame" x="0.0" y="44" width="80" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="onBtnClicked:" destination="YCk-vE-m0c" eventType="touchUpInside" id="HA9-J8-qYM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="gwZ-qE-Noi"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8z3-TH-TOK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-623.1884057971015" y="880.58035714285711"/>
         </scene>
     </scenes>
 </document>
