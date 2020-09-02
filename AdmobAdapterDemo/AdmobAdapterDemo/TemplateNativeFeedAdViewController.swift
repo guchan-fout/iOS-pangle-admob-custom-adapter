@@ -50,13 +50,14 @@ class TemplateNativeFeedAdViewController: UIViewController, GADVideoControllerDe
         adLoader.delegate = self
         adLoader.load(GADRequest())
         
+        
         guard
             let nibObjects = Bundle.main.loadNibNamed("UnifiedNativeAdView", owner: nil, options: nil),
             let adView = nibObjects.first as? GADUnifiedNativeAdView
             else {
                 assert(false, "Could not load nib file for adView")
         }
-        
+
         setAdView(adView)
         
         tableView.register(
@@ -83,11 +84,8 @@ class TemplateNativeFeedAdViewController: UIViewController, GADVideoControllerDe
         // Remove the previous ad view.
         nativeAdView = view
         nativeAdView.isHidden = true
-        let screenSize: CGRect = UIScreen.main.bounds
-        let containerView = UIView(frame: CGRect(x: 0, y: 100, width: screenSize.width, height: 300))
-        
-        containerView.addSubview(nativeAdView)
-        self.view.addSubview(containerView)
+     
+        self.view.addSubview(nativeAdView)
         nativeAdView.translatesAutoresizingMaskIntoConstraints = false
         
         // Layout constraints for positioning the native ad view to stretch the entire width and height
@@ -123,6 +121,7 @@ extension TemplateNativeFeedAdViewController: UITableViewDataSource {
    
             let adView = UIView(frame: cell.bounds)
             adView.contentMode = .scaleAspectFit
+
             adView.clipsToBounds = true
             adView.addSubview(nativeAdView)
             cell.container.addSubview(adView)

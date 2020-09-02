@@ -12,6 +12,7 @@
 #import <BUAdSDK/BUNativeExpressAdView.h>
 #import <GoogleMobileAds/GADCustomEventNativeAd.h>
 #import <GoogleMobileAds/GADMultipleAdsAdLoaderOptions.h>
+#import "BUDAdmob_TemplateNativeFeedAd.h"
 
 @interface BUDAdmob_TemplateNativeFeedCustomEventAdapter ()<GADCustomEventNativeAd,BUNativeExpressAdViewDelegate>
 
@@ -91,7 +92,10 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
     if (views.count) {
         [self.expressAdViews addObjectsFromArray:views];
         [views enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+             
             BUNativeExpressAdView *expressView = (BUNativeExpressAdView *)obj;
+
                 
             /*
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
@@ -117,6 +121,10 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 
 - (void)nativeExpressAdViewRenderSuccess:(BUNativeExpressAdView *)nativeExpressAdView {
     NSLog(@"nativeExpressAdViewRenderSuccess");
+    
+    BUDAdmob_TemplateNativeFeedAd *ad = [[BUDAdmob_TemplateNativeFeedAd alloc] initWithBUNativeAd:nativeExpressAdView];
+    //BUDAdmob_TemplateNativeFeedAd *ad = BUD
+    [self.delegate customEventNativeAd:self didReceiveMediatedUnifiedNativeAd:ad];
 }
 
 - (void)nativeExpressAdView:(BUNativeExpressAdView *)nativeExpressAdView stateDidChanged:(BUPlayerPlayState)playerState {
@@ -185,6 +193,8 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
     NSString *placementID = json[TEMPLATE_FEED_PANGLE_PLACEMENT_ID];
     return placementID;
 }
+
+
 
 @end
 
