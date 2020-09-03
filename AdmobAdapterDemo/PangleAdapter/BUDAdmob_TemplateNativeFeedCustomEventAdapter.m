@@ -14,7 +14,7 @@
 #import <GoogleMobileAds/GADMultipleAdsAdLoaderOptions.h>
 #import "BUDAdmob_TemplateNativeFeedAd.h"
 
-@interface BUDAdmob_TemplateNativeFeedCustomEventAdapter ()<GADCustomEventNativeAd,BUNativeExpressAdViewDelegate>
+@interface BUDAdmob_TemplateNativeFeedCustomEventAdapter ()<GADCustomEventBanner,BUNativeExpressAdViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray<__kindof BUNativeExpressAdView *> *expressAdViews;
 @property (strong, nonatomic) BUNativeExpressAdManager *nativeExpressAdManager;
@@ -28,10 +28,43 @@
 
 NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 
+/*
++ (BUDAdmob_TemplateNativeFeedCustomEventAdapter *)sharedInstance {
+    static BUDAdmob_TemplateNativeFeedCustomEventAdapter *sharedInstance = nil;
+    static dispatch_once_t onceToken; // onceToken = 0
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[BUDAdmob_TemplateNativeFeedCustomEventAdapter alloc] init];
+    });
+
+     return sharedInstance;
+}
+
+- (instancetype)init {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"..." userInfo:nil];
+}
+
+- (instancetype)initPrivate {
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+ */
+
+- (void)requestBannerAd:(GADAdSize)adSize parameter:(nullable NSString *)serverParameter label:(nullable NSString *)serverLabel request:(nonnull GADCustomEventRequest *)request {
+    NSInteger count = 1;
+    
+    NSString *placementID = [self processParams:serverParameter];
+    if (placementID != nil){
+        [self getTemplateNativeAd:placementID count:count];
+    } else {
+        NSLog(@"no pangle placement ID for requesting.");
+    }
+}
+
 - (void)getTemplateNativeAd:(NSString *)placementID count:(NSInteger)count {
     NSLog(@"placementID=%@",placementID);
-    // load 3 ads a time
-    // important: DO NOT set more than 3 one time
+    // important: DO NOT set except 1, not ready for multi
     int ad_count = 1;
     
     if (!self.expressAdViews) {
@@ -57,59 +90,18 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
     [self.nativeExpressAdManager loadAd:ad_count];
 }
 
-#pragma mark - GADCustomEventNativeAd
-- (void)requestNativeAdWithParameter:(NSString *)serverParameter request:(GADCustomEventRequest *)request adTypes:(NSArray *)adTypes options:(NSArray *)options rootViewController:(UIViewController *)rootViewController {
-    
-    NSInteger count = 1;
-    
-    self.rootViewController = rootViewController;
-    for (id obj in options) {
-        if ([obj isKindOfClass:[GADMultipleAdsAdLoaderOptions class]]) {
-            count = ((GADMultipleAdsAdLoaderOptions *)obj).numberOfAds;
-        }
-    }
-    NSString *placementID = [self processParams:serverParameter];
-    if (placementID != nil){
-        [self getTemplateNativeAd:placementID count:count];
-    } else {
-        NSLog(@"no pangle placement ID for requesting.");
-    }
-}
-
-- (BOOL)handlesUserClicks {
-    return NO;
-}
-
-- (BOOL)handlesUserImpressions {
-    return NO;
-}
 
 #pragma mark - BUNativeExpressAdViewDelegate
 - (void)nativeExpressAdSuccessToLoad:(BUNativeExpressAdManager *)nativeExpressAd views:(NSArray<__kindof BUNativeExpressAdView *> *)views {
     NSLog(@"nativeExpressAdSuccessToLoad");
-    
     [self.expressAdViews removeAllObjects];
+    
     if (views.count) {
         [self.expressAdViews addObjectsFromArray:views];
         [views enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
-             
             BUNativeExpressAdView *expressView = (BUNativeExpressAdView *)obj;
-
-                
-            /*
-            UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            UIViewController *rootViewController = window.rootViewController;
-            while (rootViewController.presentedViewController) {
-                rootViewController = rootViewController.presentedViewController;
-            }
-             
-            expressView.rootViewController = rootViewController;
-            [expressView render];
-             */
             expressView.rootViewController = self.rootViewController;
-            
-            NSLog(@"%@", NSStringFromClass(expressView.rootViewController.class));
             [expressView render];
         }];
     }
@@ -117,18 +109,15 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 
 - (void)nativeExpressAdFailToLoad:(BUNativeExpressAdManager *)nativeExpressAd error:(NSError *)error {
     NSLog(@"nativeExpressAdFailToLoad with error %@", error.description);
+    [self.delegate customEventBanner:self didFailAd:error];
 }
 
 - (void)nativeExpressAdViewRenderSuccess:(BUNativeExpressAdView *)nativeExpressAdView {
     NSLog(@"nativeExpressAdViewRenderSuccess");
-    
-    BUDAdmob_TemplateNativeFeedAd *ad = [[BUDAdmob_TemplateNativeFeedAd alloc] initWithBUNativeAd:nativeExpressAdView];
-    //BUDAdmob_TemplateNativeFeedAd *ad = BUD
-    [self.delegate customEventNativeAd:self didReceiveMediatedUnifiedNativeAd:ad];
+    [self.delegate customEventBanner:self didReceiveAd:nativeExpressAdView];
 }
 
 - (void)nativeExpressAdView:(BUNativeExpressAdView *)nativeExpressAdView stateDidChanged:(BUPlayerPlayState)playerState {
-
     NSLog(@"nativeExpressAdView stateDidChanged BUPlayerPlayState:%ld",(long)playerState);
 }
 
@@ -142,6 +131,7 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 
 - (void)nativeExpressAdViewDidClick:(BUNativeExpressAdView *)nativeExpressAdView {
     NSLog(@"nativeExpressAdViewDidClick");
+    [self.delegate customEventBannerWasClicked:self];
 }
 
 - (void)nativeExpressAdViewPlayerDidPlayFinish:(BUNativeExpressAdView *)nativeExpressAdView error:(NSError *)error {
@@ -150,6 +140,12 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 
 - (void)nativeExpressAdView:(BUNativeExpressAdView *)nativeExpressAdView dislikeWithReason:(NSArray<BUDislikeWords *> *)filterWords {
     NSLog(@"nativeExpressAdView dislikeWithReason");
+    [self.expressAdViews removeObject:nativeExpressAdView];
+
+    //NSUInteger index = [self.expressAdViews indexOfObject:nativeExpressAdView];
+    //NSIndexPath *indexPath=[NSIndexPath indexPathForRow:index inSection:0];
+   // [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self.delegate customEventBannerWillLeaveApplication:self];
 }
 
 - (void)nativeExpressAdViewDidClosed:(BUNativeExpressAdView *)nativeExpressAdView {
@@ -193,8 +189,6 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
     NSString *placementID = json[TEMPLATE_FEED_PANGLE_PLACEMENT_ID];
     return placementID;
 }
-
-
 
 @end
 

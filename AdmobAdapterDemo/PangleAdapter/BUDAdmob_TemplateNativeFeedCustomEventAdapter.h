@@ -8,7 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+/*
+@protocol BUDAdmob_TemplateNativeFeedDelegate <NSObject>
+
+@required
+- (void)didNativeFeedAdDislike;
+
+@end
+ */
 
 @interface BUDAdmob_TemplateNativeFeedCustomEventAdapter : NSObject
 
+//@property (weak, nonatomic) id <BUDAdmob_TemplateNativeFeedDelegate> disLikeDelegate;
+
 @end
+
+

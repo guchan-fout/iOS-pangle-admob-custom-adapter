@@ -136,14 +136,16 @@ extension TemplateNativeFeedAdViewController: UITableViewDataSource {
 
 extension TemplateNativeFeedAdViewController: UITableViewDelegate {
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        tableView.estimatedRowHeight = 30
+        return UITableView.automaticDimension
+        /*
         // ad
         if (indexPath.row == adPositon) {
             return 250
         }
         return 50
-    }
-
-    
+ */
+    }    
 }
 
 
@@ -259,4 +261,6 @@ extension TemplateNativeFeedAdViewController: GADUnifiedNativeAdDelegate {
         print("\(#function) called")
     }
 }
+
+
 
