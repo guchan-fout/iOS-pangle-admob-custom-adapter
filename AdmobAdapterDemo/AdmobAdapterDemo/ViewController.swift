@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         return tv
     }()
     
-    let adsTypeArray = ["Reward Video", "Native", "Interstitial" ,"Template Native Feed","Template Banner"]
+    let adsTypeArray = ["Reward Video", "Native", "Interstitial" ,"Template Banner","Template Native Feed"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,10 +85,10 @@ extension ViewController: UITableViewDataSource {
              performSegue(withIdentifier: "moveToIntersVideo", sender: self)
             break
         case 3:
-            performSegue(withIdentifier: "moveToTemplateNativeFeed", sender: self)
+            performSegue(withIdentifier: "moveToTemplateBanner", sender: self)
                 break
         case 4:
-            performSegue(withIdentifier: "moveToTemplateBanner", sender: self)
+            performSegue(withIdentifier: "moveToTemplateFeedAsBanner", sender: self)
                 break
         
         default: break

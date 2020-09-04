@@ -10,16 +10,13 @@
 #import <BUAdSDK/BUAdSDK.h>
 #import <BUAdSDK/BUNativeExpressAdManager.h>
 #import <BUAdSDK/BUNativeExpressAdView.h>
-#import <GoogleMobileAds/GADCustomEventNativeAd.h>
-#import <GoogleMobileAds/GADMultipleAdsAdLoaderOptions.h>
-#import "BUDAdmob_TemplateNativeFeedAd.h"
+#import <GoogleMobileAds/GADCustomEventBanner.h>
 
 @interface BUDAdmob_TemplateNativeFeedCustomEventAdapter ()<GADCustomEventBanner, BUNativeExpressAdViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray<__kindof BUNativeExpressAdView *> *expressAdViews;
 @property (strong, nonatomic) BUNativeExpressAdManager *nativeExpressAdManager;
 
-@property(strong, nonatomic) UIViewController *rootViewController;
 @end
 
 @implementation BUDAdmob_TemplateNativeFeedCustomEventAdapter
@@ -30,18 +27,19 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 
 
 - (void)requestBannerAd:(GADAdSize)adSize parameter:(nullable NSString *)serverParameter label:(nullable NSString *)serverLabel request:(nonnull GADCustomEventRequest *)request {
-    NSInteger count = 1;
-    
+
     NSString *placementID = [self processParams:serverParameter];
     if (placementID != nil){
-        [self getTemplateNativeAd:placementID count:count];
+        [self getTemplateNativeAd:placementID adSize:adSize];
     } else {
         NSLog(@"no pangle placement ID for requesting.");
     }
 }
 
-- (void)getTemplateNativeAd:(NSString *)placementID count:(NSInteger)count {
+- (void)getTemplateNativeAd:(NSString *)placementID adSize:(GADAdSize)adSize {
     NSLog(@"placementID=%@",placementID);
+    NSLog(@"request ad size width = %f",adSize.size.width);
+    NSLog(@"request ad size height = %f",adSize.size.height);
     
     // IMPORTANT: DO NOT set except 1, not ready for multiple request
     int ad_count = 1;
@@ -58,8 +56,8 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
     slot.isSupportDeepLink = YES;
     
     // Please set your ad view's size here
-    CGFloat adViewWidth = 300;
-    CGFloat adViewHeight = 250;
+    CGFloat adViewWidth = adSize.size.width;
+    CGFloat adViewHeight = adSize.size.height;
     
     self.nativeExpressAdManager = [[BUNativeExpressAdManager alloc] initWithSlot:slot adSize:CGSizeMake(adViewWidth, adViewHeight)];
     self.nativeExpressAdManager.delegate = self;
@@ -77,7 +75,8 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
         [self.expressAdViews addObjectsFromArray:views];
         [views enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             BUNativeExpressAdView *expressView = (BUNativeExpressAdView *)obj;
-            expressView.rootViewController = [self rootViewController];
+            expressView.rootViewController = self.delegate.viewControllerForPresentingModalView;
+            
             //Please make sure you have a UIWindow in your AppDelegate,or maybe crash
             [expressView render];
         }];
@@ -100,10 +99,12 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 
 - (void)nativeExpressAdViewRenderFail:(BUNativeExpressAdView *)nativeExpressAdView error:(NSError *)error {
     NSLog(@"nativeExpressAdViewRenderFail with error %@", error.description);
+    [self.delegate customEventBanner:self didFailAd:error];
 }
 
 - (void)nativeExpressAdViewWillShow:(BUNativeExpressAdView *)nativeExpressAdView {
     NSLog(@"nativeExpressAdViewWillShow");
+    [self.delegate customEventBannerWillPresentModal:self];
 }
 
 - (void)nativeExpressAdViewDidClick:(BUNativeExpressAdView *)nativeExpressAdView {
@@ -118,7 +119,7 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 - (void)nativeExpressAdView:(BUNativeExpressAdView *)nativeExpressAdView dislikeWithReason:(NSArray<BUDislikeWords *> *)filterWords {
     NSLog(@"nativeExpressAdView dislikeWithReason");
     [self.expressAdViews removeObject:nativeExpressAdView];
-    [self.delegate customEventBannerWillLeaveApplication:self];
+    [self.delegate customEventBannerDidDismissModal:self];
 }
 
 - (void)nativeExpressAdViewDidClosed:(BUNativeExpressAdView *)nativeExpressAdView {
@@ -161,24 +162,6 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
     }
     NSString *placementID = json[TEMPLATE_FEED_PANGLE_PLACEMENT_ID];
     return placementID;
-}
-
-- (UIViewController *)rootViewController
-{
-    UIWindow *foundWindow = nil;
-    NSArray *windows = [[UIApplication sharedApplication]windows];
-    for (UIWindow *window in windows) {
-        if (window.isKeyWindow) {
-            foundWindow = window;
-            break;
-        }
-    }
-    
-    UIViewController *rootViewController = foundWindow.rootViewController;
-    while (rootViewController.presentedViewController) {
-        rootViewController = rootViewController.presentedViewController;
-    }
-    return rootViewController;
 }
 
 @end

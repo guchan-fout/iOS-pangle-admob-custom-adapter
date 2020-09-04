@@ -140,14 +140,14 @@ extension TemplateFeedOfAdmobBannerAdViewViewController: GADBannerViewDelegate {
     /// Tells the delegate that the full-screen view has been dismissed.
     func adViewDidDismissScreen(_ bannerView: GADBannerView) {
         print("adViewDidDismissScreen")
+        self.contents.remove(at: adPosition)
+        self.tableView.reloadData()
     }
 
     /// Tells the delegate that a user click will open another app (such as
     /// the App Store), backgrounding the current app.
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
         print("adViewWillLeaveApplication")
-        self.contents.remove(at: adPosition)
-        self.tableView.reloadData()
     }
 }
 

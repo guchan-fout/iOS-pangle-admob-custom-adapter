@@ -21,8 +21,8 @@
                         <segue destination="T51-ws-IPE" kind="presentation" identifier="moveToReward" modalPresentationStyle="currentContext" id="Smy-lj-K9e"/>
                         <segue destination="2tU-Ue-2bA" kind="presentation" identifier="moveToIntersVideo" id="kUf-9b-gHz"/>
                         <segue destination="Cae-Jk-Mi2" kind="presentation" identifier="moveToNativeFeed" id="ut6-Bw-Cr0"/>
-                        <segue destination="YCk-vE-m0c" kind="presentation" identifier="moveToTemplateNativeFeed" id="78V-8m-HqY"/>
-                        <segue destination="0Yl-O6-H8U" kind="presentation" identifier="moveToTemplateBanner" id="jXP-eh-z5u"/>
+                        <segue destination="YCk-vE-m0c" kind="presentation" identifier="moveToTemplateBanner" id="78V-8m-HqY"/>
+                        <segue destination="0Yl-O6-H8U" kind="presentation" identifier="moveToTemplateFeedAsBanner" id="jXP-eh-z5u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -105,10 +105,10 @@
             </objects>
             <point key="canvasLocation" x="1062" y="-131"/>
         </scene>
-        <!--Template Native Feed Ad View Controller-->
+        <!--Template Banner Ad View Controller-->
         <scene sceneID="wQn-EI-cTU">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="YCk-vE-m0c" customClass="TemplateNativeFeedAdViewController" customModule="AdmobAdapterDemo" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="YCk-vE-m0c" customClass="TemplateBannerAdViewController" customModule="AdmobAdapterDemo" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="knB-hN-q0K">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,7 +118,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <action selector="onBtnClicked:" destination="YCk-vE-m0c" eventType="touchUpInside" id="HA9-J8-qYM"/>
+                                    <action selector="onBackClicked:" destination="YCk-vE-m0c" eventType="touchUpInside" id="Gcz-4j-QPv"/>
                                 </connections>
                             </button>
                         </subviews>
