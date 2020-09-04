@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TemplateBannerAdViewViewController: UIViewController {
+class TemplateFeedOfAdmobBannerAdViewViewController: UIViewController {
     
     var bannerView: GADBannerView!
     
@@ -68,7 +68,7 @@ class TemplateBannerAdViewViewController: UIViewController {
     }
 }
 
-extension TemplateBannerAdViewViewController: UITableViewDataSource {
+extension TemplateFeedOfAdmobBannerAdViewViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contents.count
     }
@@ -100,7 +100,7 @@ extension TemplateBannerAdViewViewController: UITableViewDataSource {
     }
 }
 
-extension TemplateBannerAdViewViewController: UITableViewDelegate {
+extension TemplateFeedOfAdmobBannerAdViewViewController: UITableViewDelegate {
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // ad
         if (indexPath.row == adPosition) {
@@ -112,7 +112,7 @@ extension TemplateBannerAdViewViewController: UITableViewDelegate {
     }
 }
 
-extension TemplateBannerAdViewViewController: GADBannerViewDelegate {
+extension TemplateFeedOfAdmobBannerAdViewViewController: GADBannerViewDelegate {
     /// Tells the delegate an ad request loaded an ad.
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("adViewDidReceiveAd")

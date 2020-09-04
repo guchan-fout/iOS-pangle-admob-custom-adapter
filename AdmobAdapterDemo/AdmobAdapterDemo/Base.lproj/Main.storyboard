@@ -130,10 +130,10 @@
             </objects>
             <point key="canvasLocation" x="-623.1884057971015" y="880.58035714285711"/>
         </scene>
-        <!--Template Banner Ad View View Controller-->
+        <!--Template Feed Of Admob Banner Ad View View Controller-->
         <scene sceneID="x8g-ar-gMS">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="0Yl-O6-H8U" customClass="TemplateBannerAdViewViewController" customModule="AdmobAdapterDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="0Yl-O6-H8U" customClass="TemplateFeedOfAdmobBannerAdViewViewController" customModule="AdmobAdapterDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2fk-2x-9mv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
