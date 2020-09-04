@@ -16,9 +16,17 @@ class TemplateBannerAdViewViewController: UIViewController {
     
     let a = BUDAdmob_TemplateNativeFeedCustomEventAdapter.init()
     
-    let contents = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday","sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday","sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday" ]
+    var contents: [AnyObject] = [
+        "sunday" as AnyObject, "monday" as AnyObject, "tuesday" as AnyObject, "wednesday" as AnyObject,
+        "thursday" as AnyObject, "friday" as AnyObject, "saturday" as AnyObject,
+        "sunday" as AnyObject, "monday" as AnyObject, "tuesday" as AnyObject, "wednesday" as AnyObject,
+        "thursday" as AnyObject, "friday" as AnyObject, "saturday" as AnyObject,
+        "sunday" as AnyObject, "monday" as AnyObject, "tuesday" as AnyObject, "wednesday" as AnyObject,
+        "thursday" as AnyObject, "friday" as AnyObject, "saturday" as AnyObject,
+    ]
     
-    let adPositon = 5
+    // This is the position in the table view that you want to show the ad
+    let adPosition = 5
 
     @IBAction func onBackClick(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -32,24 +40,20 @@ class TemplateBannerAdViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let adSize = GADAdSizeFromCGSize(CGSize(width: 300, height: 250))
-        bannerView = GADBannerView(adSize: adSize)
+        
+        // Please make sure the size here is same on Pangle
+        let adFrameSize = GADAdSizeFromCGSize(CGSize(width: 300, height: 250))
+        bannerView = GADBannerView(adSize: adFrameSize)
         bannerView.adUnitID = "ca-app-pub-2748478898138855/1197230743"
         bannerView.rootViewController = self
         bannerView.delegate = self
         bannerView.load(GADRequest())
-        
-        tableView.register(
-            UINib(nibName: "AdContentCell", bundle: nil),
-            forCellReuseIdentifier: "ContentCell"
-        )
     }
     
     func setupTableView() {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.topAnchor,constant: 80.0).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -57,6 +61,10 @@ class TemplateBannerAdViewViewController: UIViewController {
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(
+            UINib(nibName: "AdContentCell", bundle: nil),
+            forCellReuseIdentifier: "ContentCell"
+        )
     }
 }
 
@@ -66,8 +74,14 @@ extension TemplateBannerAdViewViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-        if (indexPath.row == adPositon) {
+        if (indexPath.row == adPosition) {
+            guard let item = contents[indexPath.row] as? GADBannerView else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+                let cellName = String(describing: contents[indexPath.row])
+                cell.textLabel?.text = cellName
+                return cell
+            }
+            
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: "ContentCell",
                 for: indexPath) as? AdContentCell else {
@@ -75,11 +89,12 @@ extension TemplateBannerAdViewViewController: UITableViewDataSource {
             }
             
             cell.contentMode = .center
-            cell.container.addSubview(bannerView)
+            cell.container.addSubview(item)
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = contents[indexPath.row]
+            let cellName = String(describing: contents[indexPath.row])
+            cell.textLabel?.text = cellName
             return cell
         }
     }
@@ -88,8 +103,10 @@ extension TemplateBannerAdViewViewController: UITableViewDataSource {
 extension TemplateBannerAdViewViewController: UITableViewDelegate {
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // ad
-        if (indexPath.row == adPositon) {
-            return 250
+        if (indexPath.row == adPosition) {
+            if(contents[indexPath.row] .isKind(of: GADBannerView.self)) {
+                return 250
+            }
         }
         return 50
     }
@@ -98,37 +115,41 @@ extension TemplateBannerAdViewViewController: UITableViewDelegate {
 extension TemplateBannerAdViewViewController: GADBannerViewDelegate {
     /// Tells the delegate an ad request loaded an ad.
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-      print("adViewDidReceiveAd")
+        print("adViewDidReceiveAd")
+        
+        // Insert the ad to table view's datasource and reload
+        contents.insert(bannerView, at: adPosition)
+        self.tableView.reloadData()
     }
 
     /// Tells the delegate an ad request failed.
     func adView(_ bannerView: GADBannerView,
         didFailToReceiveAdWithError error: GADRequestError) {
-      print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
     }
 
     /// Tells the delegate that a full-screen view will be presented in response
     /// to the user clicking on an ad.
     func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-      print("adViewWillPresentScreen")
+        print("adViewWillPresentScreen")
     }
 
     /// Tells the delegate that the full-screen view will be dismissed.
     func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-      print("adViewWillDismissScreen")
+        print("adViewWillDismissScreen")
     }
 
     /// Tells the delegate that the full-screen view has been dismissed.
     func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-      print("adViewDidDismissScreen")
+        print("adViewDidDismissScreen")
     }
 
     /// Tells the delegate that a user click will open another app (such as
     /// the App Store), backgrounding the current app.
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-      print("adViewWillLeaveApplication")
-        let indexPath = IndexPath(item: adPositon, section: 0)
-        self.tableView.deleteRows(at: [indexPath], with: .fade)
+        print("adViewWillLeaveApplication")
+        self.contents.remove(at: adPosition)
+        self.tableView.reloadData()
     }
 }
 

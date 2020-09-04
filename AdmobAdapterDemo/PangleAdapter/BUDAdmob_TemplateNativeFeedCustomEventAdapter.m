@@ -14,7 +14,7 @@
 #import <GoogleMobileAds/GADMultipleAdsAdLoaderOptions.h>
 #import "BUDAdmob_TemplateNativeFeedAd.h"
 
-@interface BUDAdmob_TemplateNativeFeedCustomEventAdapter ()<GADCustomEventBanner,BUNativeExpressAdViewDelegate>
+@interface BUDAdmob_TemplateNativeFeedCustomEventAdapter ()<GADCustomEventBanner, BUNativeExpressAdViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray<__kindof BUNativeExpressAdView *> *expressAdViews;
 @property (strong, nonatomic) BUNativeExpressAdManager *nativeExpressAdManager;
@@ -28,28 +28,6 @@
 
 NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 
-/*
-+ (BUDAdmob_TemplateNativeFeedCustomEventAdapter *)sharedInstance {
-    static BUDAdmob_TemplateNativeFeedCustomEventAdapter *sharedInstance = nil;
-    static dispatch_once_t onceToken; // onceToken = 0
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[BUDAdmob_TemplateNativeFeedCustomEventAdapter alloc] init];
-    });
-
-     return sharedInstance;
-}
-
-- (instancetype)init {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"..." userInfo:nil];
-}
-
-- (instancetype)initPrivate {
-    if (self = [super init]) {
-        
-    }
-    return self;
-}
- */
 
 - (void)requestBannerAd:(GADAdSize)adSize parameter:(nullable NSString *)serverParameter label:(nullable NSString *)serverLabel request:(nonnull GADCustomEventRequest *)request {
     NSInteger count = 1;
@@ -64,7 +42,8 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 
 - (void)getTemplateNativeAd:(NSString *)placementID count:(NSInteger)count {
     NSLog(@"placementID=%@",placementID);
-    // important: DO NOT set except 1, not ready for multi
+    
+    // IMPORTANT: DO NOT set except 1, not ready for multiple request
     int ad_count = 1;
     
     if (!self.expressAdViews) {
@@ -73,18 +52,16 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
     BUAdSlot *slot = [[BUAdSlot alloc] init];
     slot.ID = placementID;
     slot.AdType = BUAdSlotAdTypeFeed;
-    BUSize *imgSize = [BUSize sizeBy:BUProposalSize_Banner600_500];
+    BUSize *imgSize = [BUSize sizeBy:BUProposalSize_Feed228_150];
     slot.imgSize = imgSize;
     slot.position = BUAdSlotPositionFeed;
     slot.isSupportDeepLink = YES;
     
-    
-    // Please reset your ad view's size here
+    // Please set your ad view's size here
     CGFloat adViewWidth = 300;
     CGFloat adViewHeight = 250;
     
     self.nativeExpressAdManager = [[BUNativeExpressAdManager alloc] initWithSlot:slot adSize:CGSizeMake(adViewWidth, adViewHeight)];
-
     self.nativeExpressAdManager.delegate = self;
     
     [self.nativeExpressAdManager loadAd:ad_count];
@@ -99,9 +76,9 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
     if (views.count) {
         [self.expressAdViews addObjectsFromArray:views];
         [views enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
             BUNativeExpressAdView *expressView = (BUNativeExpressAdView *)obj;
-            expressView.rootViewController = self.rootViewController;
+            expressView.rootViewController = [self rootViewController];
+            //Please make sure you have a UIWindow in your AppDelegate,or maybe crash
             [expressView render];
         }];
     }
@@ -141,10 +118,6 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 - (void)nativeExpressAdView:(BUNativeExpressAdView *)nativeExpressAdView dislikeWithReason:(NSArray<BUDislikeWords *> *)filterWords {
     NSLog(@"nativeExpressAdView dislikeWithReason");
     [self.expressAdViews removeObject:nativeExpressAdView];
-
-    //NSUInteger index = [self.expressAdViews indexOfObject:nativeExpressAdView];
-    //NSIndexPath *indexPath=[NSIndexPath indexPathForRow:index inSection:0];
-   // [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [self.delegate customEventBannerWillLeaveApplication:self];
 }
 
@@ -188,6 +161,24 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
     }
     NSString *placementID = json[TEMPLATE_FEED_PANGLE_PLACEMENT_ID];
     return placementID;
+}
+
+- (UIViewController *)rootViewController
+{
+    UIWindow *foundWindow = nil;
+    NSArray *windows = [[UIApplication sharedApplication]windows];
+    for (UIWindow *window in windows) {
+        if (window.isKeyWindow) {
+            foundWindow = window;
+            break;
+        }
+    }
+    
+    UIViewController *rootViewController = foundWindow.rootViewController;
+    while (rootViewController.presentedViewController) {
+        rootViewController = rootViewController.presentedViewController;
+    }
+    return rootViewController;
 }
 
 @end
