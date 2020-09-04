@@ -14,8 +14,6 @@ class TemplateFeedOfAdmobBannerAdViewViewController: UIViewController {
     
     let tableView = UITableView()
     
-    let a = BUDAdmob_TemplateNativeFeedCustomEventAdapter.init()
-    
     var contents: [AnyObject] = [
         "sunday" as AnyObject, "monday" as AnyObject, "tuesday" as AnyObject, "wednesday" as AnyObject,
         "thursday" as AnyObject, "friday" as AnyObject, "saturday" as AnyObject,
