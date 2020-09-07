@@ -27,7 +27,6 @@
 		2C4D6D8924F8CEEF00EF00CD /* TemplateBannerAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D6D8824F8CEEF00EF00CD /* TemplateBannerAdViewController.swift */; };
 		2C7ABC6A24FE5688000DA3C2 /* AdContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7ABC6924FE5688000DA3C2 /* AdContentCell.swift */; };
 		2C7ABC6C24FE5692000DA3C2 /* AdContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ABC6B24FE5692000DA3C2 /* AdContentCell.xib */; };
-		2C7ABC6F24FE75EF000DA3C2 /* BUDAdmob_TemplateNativeFeedAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7ABC6E24FE75EF000DA3C2 /* BUDAdmob_TemplateNativeFeedAd.m */; };
 		2CE06DE22500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE06DE12500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift */; };
 		2CE06DE625022C56004FC3CE /* BUDAdmob_TemplateBannerCustomEventAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE06DE525022C56004FC3CE /* BUDAdmob_TemplateBannerCustomEventAdapter.m */; };
 		327B6ABF2D038459023483E8 /* Pods_AdmobAdapterDemo_AdmobAdapterDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 477FEA42AEAFC79471965CD9 /* Pods_AdmobAdapterDemo_AdmobAdapterDemoUITests.framework */; };
@@ -86,8 +85,6 @@
 		2C4D6D8824F8CEEF00EF00CD /* TemplateBannerAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateBannerAdViewController.swift; sourceTree = "<group>"; };
 		2C7ABC6924FE5688000DA3C2 /* AdContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdContentCell.swift; sourceTree = "<group>"; };
 		2C7ABC6B24FE5692000DA3C2 /* AdContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdContentCell.xib; sourceTree = "<group>"; };
-		2C7ABC6D24FE75EF000DA3C2 /* BUDAdmob_TemplateNativeFeedAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BUDAdmob_TemplateNativeFeedAd.h; sourceTree = "<group>"; };
-		2C7ABC6E24FE75EF000DA3C2 /* BUDAdmob_TemplateNativeFeedAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUDAdmob_TemplateNativeFeedAd.m; sourceTree = "<group>"; };
 		2CE06DE12500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateFeedOfAdmobBannerAdViewViewController.swift; sourceTree = "<group>"; };
 		2CE06DE425022C56004FC3CE /* BUDAdmob_TemplateBannerCustomEventAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BUDAdmob_TemplateBannerCustomEventAdapter.h; sourceTree = "<group>"; };
 		2CE06DE525022C56004FC3CE /* BUDAdmob_TemplateBannerCustomEventAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUDAdmob_TemplateBannerCustomEventAdapter.m; sourceTree = "<group>"; };
@@ -213,7 +210,6 @@
 				1525124924AF340B0059C901 /* BUDAdmob_NativeFeedCustomEventAdapter.m */,
 				2C38409B24FDF42500C647C2 /* BUDAdmob_TemplateNativeFeedCustomEventAdapter.h */,
 				2C38409C24FDF42500C647C2 /* BUDAdmob_TemplateNativeFeedCustomEventAdapter.m */,
-				2C38409A24FDE2E600C647C2 /* TemplateNativeFeedAds */,
 				2CE06DE425022C56004FC3CE /* BUDAdmob_TemplateBannerCustomEventAdapter.h */,
 				2CE06DE525022C56004FC3CE /* BUDAdmob_TemplateBannerCustomEventAdapter.m */,
 			);
@@ -231,15 +227,6 @@
 				E2F73477D9EB9CC758C7AAEC /* Pods-AdmobAdapterDemoTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		2C38409A24FDE2E600C647C2 /* TemplateNativeFeedAds */ = {
-			isa = PBXGroup;
-			children = (
-				2C7ABC6D24FE75EF000DA3C2 /* BUDAdmob_TemplateNativeFeedAd.h */,
-				2C7ABC6E24FE75EF000DA3C2 /* BUDAdmob_TemplateNativeFeedAd.m */,
-			);
-			path = TemplateNativeFeedAds;
 			sourceTree = "<group>";
 		};
 		2C7ABC6824FE5672000DA3C2 /* UI */ = {
@@ -551,7 +538,6 @@
 				15A87CCB24AC98600018DE6D /* RewardVideoController.swift in Sources */,
 				15A87CCF24AD7CB70018DE6D /* InterstitialVideoViewController.swift in Sources */,
 				15A87C9D24AC6B0F0018DE6D /* SceneDelegate.swift in Sources */,
-				2C7ABC6F24FE75EF000DA3C2 /* BUDAdmob_TemplateNativeFeedAd.m in Sources */,
 				15A87CD524ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m in Sources */,
 				1547DD2F24B84A0A00075E41 /* BUDAdmob_FullScreenVideoCustomEventAdapter.m in Sources */,
 				2CE06DE22500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift in Sources */,
