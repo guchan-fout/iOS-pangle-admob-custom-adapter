@@ -25,7 +25,7 @@ class TemplateBannerAdViewController: UIViewController {
         super.viewDidLoad()
         let adSize = GADAdSizeFromCGSize(CGSize(width: 300, height: 250))
         bannerView = GADBannerView(adSize: adSize)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-2748478898138855/2274454791"
         bannerView.rootViewController = self
         bannerView.delegate = self
         //addBannerViewToView(bannerView)
