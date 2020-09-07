@@ -28,7 +28,6 @@ class TemplateBannerAdViewController: UIViewController {
         bannerView.adUnitID = "ca-app-pub-2748478898138855/2274454791"
         bannerView.rootViewController = self
         bannerView.delegate = self
-        //addBannerViewToView(bannerView)
         bannerView.load(GADRequest())
     }
     
@@ -52,7 +51,6 @@ class TemplateBannerAdViewController: UIViewController {
                            multiplier: 1,
                            constant: 0)
        ])
- 
     }
 }
 
@@ -83,14 +81,13 @@ extension TemplateBannerAdViewController: GADBannerViewDelegate {
     /// Tells the delegate that the full-screen view has been dismissed.
     func adViewDidDismissScreen(_ bannerView: GADBannerView) {
         print("adViewDidDismissScreen")
+        self.bannerView .removeFromSuperview()
     }
 
     /// Tells the delegate that a user click will open another app (such as
     /// the App Store), backgrounding the current app.
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
         print("adViewWillLeaveApplication")
-        //let indexPath = IndexPath(item: adPositon, section: 0)
-        //self.tableView.deleteRows(at: [indexPath], with: .fade)
     }
 }
 
