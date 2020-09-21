@@ -20,8 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BUAdSDKManager.setAppID("5064663")
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
+        //initializeMoPubSdk(adUnitIdForConsent: <#T##String#>, containerViewController: <#T##<<error type>>#>)
+        
         return true
     }
+    
+
 
     // MARK: UISceneSession Lifecycle
 

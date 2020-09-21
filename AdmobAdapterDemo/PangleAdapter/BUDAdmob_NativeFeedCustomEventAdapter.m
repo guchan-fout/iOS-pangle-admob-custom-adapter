@@ -11,11 +11,13 @@
 #import <GoogleMobileAds/GADCustomEventNativeAd.h>
 #import <GoogleMobileAds/GADMultipleAdsAdLoaderOptions.h>
 #import "BUDAdmob_NativeFeedAd.h"
+#import <MoPub/MoPub.h>
 
 
 @interface BUDAdmob_NativeFeedCustomEventAdapter ()<GADCustomEventNativeAd,BUNativeAdsManagerDelegate>
 
 @property (nonatomic, strong, getter=getNativeAd)BUNativeAdsManager *adManager;
+@property (nonatomic) MPAdView *adView;
 
 @end
 
@@ -44,6 +46,20 @@ NSString *const FEED_PANGLE_PLACEMENT_ID = @"placementID";
 
 #pragma mark - GADCustomEventNativeAd
 - (void)requestNativeAdWithParameter:(NSString *)serverParameter request:(GADCustomEventRequest *)request adTypes:(NSArray *)adTypes options:(NSArray *)options rootViewController:(UIViewController *)rootViewController {
+    
+    self.adView = [[MPAdView alloc] initWithAdUnitId:@"3376d9df90c24dd9910b7bb85a5e3ccd"];
+    self.adView.delegate = self;
+    self.adView.frame = CGRectMake(0, 0, kMPPresetMaxAdSizeMatchFrame.width, kMPPresetMaxAdSizeMatchFrame.height);
+    [rootViewController.view addSubview:self.adView];
+
+    // You can pass in specific width and height to be requested
+    [self.adView loadAdWithMaxAdSize:MOPUB_BANNER_SIZE];
+    // Or you can use one of the height-based constants
+    [self.adView loadAdWithMaxAdSize:kMPPresetMaxAdSize50Height];
+    // Alternatively, you can use the frame as the maximum ad size
+    [self.adView loadAdWithMaxAdSize:kMPPresetMaxAdSizeMatchFrame];
+    
+    
     NSInteger count = 1;
     for (id obj in options) {
         if ([obj isKindOfClass:[GADMultipleAdsAdLoaderOptions class]]) {

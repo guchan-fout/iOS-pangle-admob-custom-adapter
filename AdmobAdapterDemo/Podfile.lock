@@ -1,9 +1,9 @@
 PODS:
-  - Bytedance-UnionAD (3.2.5.1)
-  - Google-Mobile-Ads-SDK (7.64.0):
+  - Bytedance-UnionAD (3.2.6.2)
+  - Google-Mobile-Ads-SDK (7.65.0):
     - GoogleAppMeasurement (~> 6.0)
     - GoogleUserMessagingPlatform (~> 1.1)
-  - GoogleAppMeasurement (6.8.0):
+  - GoogleAppMeasurement (6.8.2):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
     - GoogleUtilities/MethodSwizzler (~> 6.7)
     - GoogleUtilities/Network (~> 6.7)
@@ -27,6 +27,14 @@ PODS:
   - "GoogleUtilities/NSData+zlib (6.7.2)"
   - GoogleUtilities/Reachability (6.7.2):
     - GoogleUtilities/Logger
+  - mopub-ios-sdk (5.13.1):
+    - mopub-ios-sdk/MoPubSDK (= 5.13.1)
+  - mopub-ios-sdk/Core (5.13.1)
+  - mopub-ios-sdk/MoPubSDK (5.13.1):
+    - mopub-ios-sdk/Core
+    - mopub-ios-sdk/NativeAds
+  - mopub-ios-sdk/NativeAds (5.13.1):
+    - mopub-ios-sdk/Core
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -37,6 +45,7 @@ PODS:
 DEPENDENCIES:
   - Bytedance-UnionAD
   - Google-Mobile-Ads-SDK
+  - mopub-ios-sdk (= 5.13.1)
 
 SPEC REPOS:
   trunk:
@@ -45,18 +54,20 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUserMessagingPlatform
     - GoogleUtilities
+    - mopub-ios-sdk
     - nanopb
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Bytedance-UnionAD: 21067d0c395d063a1697420ed2f520984d4a25c1
-  Google-Mobile-Ads-SDK: aec52559ce73ddf1e6478d1904dd71a741f1bc61
-  GoogleAppMeasurement: ecc30d0ab5b66d7d18e85ce1b8e2b345db60626d
+  Bytedance-UnionAD: ee419a461654e1c2338b5f6b0b2224617b230640
+  Google-Mobile-Ads-SDK: af735e001ee534d9dd2ce0a87cd8c355b19844b5
+  GoogleAppMeasurement: 1a66f478c68ecd6c16ee63ee60c7c3a648e6b337
   GoogleUserMessagingPlatform: 9dc714d2e1f0aa727b9cc52d266dc1b155f4c3f2
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
+  mopub-ios-sdk: 18af57aaf79d0ea3d0232b43b2d603ae8ea8e826
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
 
-PODFILE CHECKSUM: 7cdfc285e4163d89696f1d44da83f61e68656529
+PODFILE CHECKSUM: 80477c1584ab9b1ef2fbbc43cd35c93497737846
 
 COCOAPODS: 1.9.3
