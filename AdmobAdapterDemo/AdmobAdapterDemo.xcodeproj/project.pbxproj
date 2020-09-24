@@ -25,6 +25,7 @@
 		15A87CD524ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A87CD424ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m */; };
 		2C38409D24FDF42500C647C2 /* BUDAdmob_TemplateNativeFeedCustomEventAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C38409C24FDF42500C647C2 /* BUDAdmob_TemplateNativeFeedCustomEventAdapter.m */; };
 		2C4D6D8924F8CEEF00EF00CD /* TemplateBannerAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D6D8824F8CEEF00EF00CD /* TemplateBannerAdViewController.swift */; };
+		2C6DCEDA251C346D0007077B /* TestForTimeOutVideoControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6DCED9251C346D0007077B /* TestForTimeOutVideoControllerViewController.swift */; };
 		2C7ABC6A24FE5688000DA3C2 /* AdContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7ABC6924FE5688000DA3C2 /* AdContentCell.swift */; };
 		2C7ABC6C24FE5692000DA3C2 /* AdContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ABC6B24FE5692000DA3C2 /* AdContentCell.xib */; };
 		2CE06DE22500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE06DE12500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift */; };
@@ -83,6 +84,7 @@
 		2C38409B24FDF42500C647C2 /* BUDAdmob_TemplateNativeFeedCustomEventAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BUDAdmob_TemplateNativeFeedCustomEventAdapter.h; sourceTree = "<group>"; };
 		2C38409C24FDF42500C647C2 /* BUDAdmob_TemplateNativeFeedCustomEventAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUDAdmob_TemplateNativeFeedCustomEventAdapter.m; sourceTree = "<group>"; };
 		2C4D6D8824F8CEEF00EF00CD /* TemplateBannerAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateBannerAdViewController.swift; sourceTree = "<group>"; };
+		2C6DCED9251C346D0007077B /* TestForTimeOutVideoControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestForTimeOutVideoControllerViewController.swift; sourceTree = "<group>"; };
 		2C7ABC6924FE5688000DA3C2 /* AdContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdContentCell.swift; sourceTree = "<group>"; };
 		2C7ABC6B24FE5692000DA3C2 /* AdContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdContentCell.xib; sourceTree = "<group>"; };
 		2CE06DE12500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateFeedOfAdmobBannerAdViewViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				2C4D6D8824F8CEEF00EF00CD /* TemplateBannerAdViewController.swift */,
 				2CE06DE12500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift */,
 				15A87CCE24AD7CB70018DE6D /* InterstitialVideoViewController.swift */,
+				2C6DCED9251C346D0007077B /* TestForTimeOutVideoControllerViewController.swift */,
 				15A87CA024AC6B0F0018DE6D /* Main.storyboard */,
 				1525124624AF282A0059C901 /* UnifiedNativeAdView.xib */,
 				15A87CA324AC6B120018DE6D /* Assets.xcassets */,
@@ -530,6 +533,7 @@
 				2C7ABC6A24FE5688000DA3C2 /* AdContentCell.swift in Sources */,
 				154484BD24B2BDD4006C68CF /* BUDAdmob_NativeFeedAd.m in Sources */,
 				2CE06DE625022C56004FC3CE /* BUDAdmob_TemplateBannerCustomEventAdapter.m in Sources */,
+				2C6DCEDA251C346D0007077B /* TestForTimeOutVideoControllerViewController.swift in Sources */,
 				2C4D6D8924F8CEEF00EF00CD /* TemplateBannerAdViewController.swift in Sources */,
 				1525124A24AF340B0059C901 /* BUDAdmob_NativeFeedCustomEventAdapter.m in Sources */,
 				15A87CCD24AD7C880018DE6D /* NativeAdViewController.swift in Sources */,

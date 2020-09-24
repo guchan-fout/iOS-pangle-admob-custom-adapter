@@ -12,6 +12,8 @@ import MoPub
 class TemplateFeedOfAdmobBannerAdViewViewController: UIViewController {
     
     var bannerView: GADBannerView!
+    var bannerView2: GADBannerView!
+    var bannerView3: GADBannerView!
     
     var mpAdView: MPAdView!
     
@@ -35,8 +37,7 @@ class TemplateFeedOfAdmobBannerAdViewViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        
-        
+
         setupTableView()
     }
     
@@ -46,16 +47,16 @@ class TemplateFeedOfAdmobBannerAdViewViewController: UIViewController {
         // Please make sure the size here is same on Pangle
         let adFrameSize = GADAdSizeFromCGSize(CGSize(width: 300, height: 250))
         bannerView = GADBannerView(adSize: adFrameSize)
-        bannerView.adUnitID = "ca-app-pub-2748478898138855/1197230743"
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.delegate = self
         bannerView.load(GADRequest())
         createAnotherBanner()
+        createAnotherBanner2()
     }
     
     func createAnotherBanner(){
         print("createAnotherBanner")
-        var bannerView2: GADBannerView!
         let adSize = GADAdSizeFromCGSize(CGSize(width: 300, height: 250))
         bannerView2 = GADBannerView(adSize: adSize)
         bannerView2.adUnitID = "ca-app-pub-2748478898138855/7004935081"
@@ -63,6 +64,17 @@ class TemplateFeedOfAdmobBannerAdViewViewController: UIViewController {
         bannerView2.delegate = self
         bannerView2.load(GADRequest())
     }
+    
+    func createAnotherBanner2(){
+        print("createAnotherBanner")
+        let adSize = GADAdSizeFromCGSize(CGSize(width: 300, height: 250))
+        bannerView2 = GADBannerView(adSize: adSize)
+        bannerView2.adUnitID = "ca-app-pub-2748478898138855/1383004943"
+        bannerView2.rootViewController = self
+        bannerView2.delegate = self
+        bannerView2.load(GADRequest())
+    }
+    
     
     func setupTableView() {
         view.addSubview(tableView)
@@ -165,200 +177,8 @@ extension TemplateFeedOfAdmobBannerAdViewViewController: GADBannerViewDelegate {
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
         print("adViewWillLeaveApplication")
     }
-    
-    func initializeMoPubSdk(adUnitIdForConsent: String,
-                            containerViewController: ContainerViewController,
-                            mopub: MoPub = .sharedInstance()) {
-        // MoPub SDK initialization
-        let sdkConfig = MPMoPubConfiguration(adUnitIdForAppInitialization: adUnitIdForConsent)
-        sdkConfig.globalMediationSettings = []
-        sdkConfig.loggingLevel = .info
         
-        mopub.initializeSdk(with: sdkConfig) {
-            // Update the state of the menu now that the SDK has completed initialization.
-        }
-    }
-    
 }
 
-class ContainerViewController: UIViewController {
-    // Constants
-    struct Constants {
-        static let menuAnimationDuration: TimeInterval = 0.25 //seconds
-    }
-    
-    // MARK: - IBOutlets
-    @IBOutlet weak var menuContainerLeadingEdgeConstraint: NSLayoutConstraint!
-    @IBOutlet weak var menuContainerWidthConstraint: NSLayoutConstraint!
-    
-    // MARK: - Menu Gesture Recognizers
-    
-    private var menuCloseGestureRecognizer: UISwipeGestureRecognizer!
-    private var menuCloseTapGestureRecognizer: UITapGestureRecognizer!
-    private var menuOpenGestureRecognizer: UISwipeGestureRecognizer!
-    
-    // MARK: - Properties
-    
-    /**
-     Current collection of override traits for mainTabBarController.
-     */
-    var forcedTraitCollection: UITraitCollection?  = nil {
-        didSet {
-            updateForcedTraitCollection()
-        }
-    }
-    
-    /**
-     Main TabBar Controller of the app.
-     */
-    
-    /**
-     Menu TableView Controller of the app.
-     */
-    
 
-    
-    // MARK: - Forced Traits
-    
-    func setForcedTraits(for size: CGSize) {
-        let device = traitCollection.userInterfaceIdiom
-        let isPortrait: Bool = view.bounds.size.width < view.bounds.size.height
-        
-        switch (device, isPortrait) {
-        case (.pad, true): forcedTraitCollection = UITraitCollection(horizontalSizeClass: .compact)
-        default: forcedTraitCollection = nil
-        }
-    }
-    
-    /**
-     Updates the Main Tab Bar controller with the new trait overrides.
-     */
-    func updateForcedTraitCollection() {
-
-    }
-    
-    // MARK: - Segues
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // When the children view controllers are loaded, each will perform
-        // a segue which we must capture to initialize the view controller
-        // properties.
-        switch segue.identifier {
-        case "onEmbedTabBarController":
-            break
-        case "onEmbedMenuController":
-            break
-        default:
-            break
-        }
-    }
-    
-    // MARK: - View Life Cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Setup trait overrides
-        setForcedTraits(for: view.bounds.size)
-        
-        // Initialize the gesture recognizers and attach them to the view.
-        menuCloseGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeMenuClose(_:)))
-        menuCloseGestureRecognizer.direction = .left
-        view.addGestureRecognizer(menuCloseGestureRecognizer)
-        
-        menuCloseTapGestureRecognizer = UITapGestureRecognizer (target: self, action: #selector(tapMenuClose(_:)))
-        menuCloseTapGestureRecognizer.isEnabled = false
-        menuCloseTapGestureRecognizer.delegate = self
-        view.addGestureRecognizer(menuCloseTapGestureRecognizer)
-        
-        menuOpenGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeMenuOpen(_:)))
-        menuOpenGestureRecognizer.direction = .right
-        view.addGestureRecognizer(menuOpenGestureRecognizer)
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: { _ in
-            self.setForcedTraits(for: size)
-        }, completion: nil)
-    }
-
-    // MARK: - Menu
-    
-    /**
-     Closes the menu if it open.
-     */
-    func closeMenu() {
-        swipeMenuClose(menuCloseGestureRecognizer)
-    }
-    
-    @objc func swipeMenuClose(_ sender: UISwipeGestureRecognizer) {
-        // Do nothing if the menu is not fully open since it may either
-        // be closed, or in the process of being closed.
-        guard menuContainerLeadingEdgeConstraint.constant == 0 else {
-            return
-        }
-        
-        // Disable the tap outside of menu to close gesture recognizer.
-        menuCloseTapGestureRecognizer.isEnabled = false
-        
-        // Close the menu by setting the leading edge constraint to the negative width,
-        // which will put it offscreen.
-        UIView.animate(withDuration: Constants.menuAnimationDuration, animations: {
-            self.menuContainerLeadingEdgeConstraint.constant = -self.menuContainerWidthConstraint.constant
-            self.view.layoutIfNeeded()
-        }) { _ in
-            // Re-enable user interaction for the main content container.
-        }
-    }
-    
-    @objc func swipeMenuOpen(_ sender: UISwipeGestureRecognizer) {
-        // Do nothing if the menu is already open or in the process of opening.
-        guard (menuContainerWidthConstraint.constant + menuContainerLeadingEdgeConstraint.constant) == 0 else {
-            return
-        }
-        
-        // Disable user interaction for the main content container.
-        
-        // Open the menu by setting the leading edge constraint back to zero.
-        UIView.animate(withDuration: Constants.menuAnimationDuration, animations: {
-            self.menuContainerLeadingEdgeConstraint.constant = 0
-            self.view.layoutIfNeeded()
-        }) { _ in
-            // Enable the tap outside of menu to close gesture recognizer.
-            self.menuCloseTapGestureRecognizer.isEnabled = true
-        }
-    }
-    
-    @objc func tapMenuClose(_ sender: UITapGestureRecognizer) {
-        // Allow any previously queued animations to finish before attempting to close the menu
-        view.layoutIfNeeded()
-        
-        // Close the menu
-        closeMenu()
-    }
-}
-
-extension ContainerViewController: UIGestureRecognizerDelegate {
-    // MARK: - UIGestureRecognizerDelegate
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        // Only handle the menu tap to close gesture
-        guard gestureRecognizer == menuCloseTapGestureRecognizer else {
-            return true
-        }
-        
-        // If the menu is not fully open, disregard the tap.
-        guard menuContainerLeadingEdgeConstraint.constant == 0 else {
-            return false
-        }
-        
-        // If the tap intersects the open menu, disregard the tap.
-        guard gestureRecognizer.location(in: view).x > menuContainerWidthConstraint.constant else {
-            return false
-        }
-        
-        return true
-    }
-}
 

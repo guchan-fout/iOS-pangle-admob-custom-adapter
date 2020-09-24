@@ -7,6 +7,8 @@ target 'AdmobAdapterDemo' do
   pod 'Google-Mobile-Ads-SDK'
   pod 'mopub-ios-sdk', '5.13.1'
   pod 'Bytedance-UnionAD'
+  pod 'LookinServer', :configurations => ['Debug']
+
 
   # Pods for AdmobAdapterDemo
 

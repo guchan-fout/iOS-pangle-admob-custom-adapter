@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // 5000546 for video
         BUAdSDKManager.setAppID("5064663")
+        //BUAdSDKManager.setExpressAdViewInWindowWhenInit(true)
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         //initializeMoPubSdk(adUnitIdForConsent: <#T##String#>, containerViewController: <#T##<<error type>>#>)
