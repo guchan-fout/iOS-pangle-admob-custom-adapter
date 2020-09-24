@@ -79,7 +79,7 @@ class TestForTimeOutVideoControllerViewController: UIViewController {
 
     
     func getTemplateNativeAd(placementID: String) {
-        let ad_count = 2
+        let ad_count = 1
         if((self.expressAdViews == nil)) {
             self.expressAdViews = NSMutableArray.init(capacity: ad_count)
         }
@@ -134,6 +134,7 @@ extension TestForTimeOutVideoControllerViewController: UITableViewDataSource {
             
             cell.contentMode = .center
             cell.container.addSubview(obj as! BUNativeExpressAdView)
+            cell.container.backgroundColor = UIColor.white
             return cell
         }
         
@@ -242,7 +243,7 @@ extension TestForTimeOutVideoControllerViewController: BUNativeExpressAdViewDele
         print("\(#function):")
         let obj = contents[adPosition10]
         if (!obj.isKind(of: BUNativeExpressAdView.self)){
-            contents.insert(nativeExpressAdView, at: adPosition10+1)
+            contents.insert(nativeExpressAdView, at: adPosition10+2)
         }
         self.tableView.reloadData()
         
