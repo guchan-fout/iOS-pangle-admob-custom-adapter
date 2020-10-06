@@ -23,6 +23,9 @@
 		15A87CCD24AD7C880018DE6D /* NativeAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A87CCC24AD7C880018DE6D /* NativeAdViewController.swift */; };
 		15A87CCF24AD7CB70018DE6D /* InterstitialVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A87CCE24AD7CB70018DE6D /* InterstitialVideoViewController.swift */; };
 		15A87CD524ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A87CD424ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m */; };
+		2C1249A32526F54600BA67F0 /* YourNativeAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1249A22526F54600BA67F0 /* YourNativeAdsViewController.swift */; };
+		2C1249AA25275FD600BA67F0 /* NativeAdCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1249A825275FD600BA67F0 /* NativeAdCellTableViewCell.swift */; };
+		2C1249AB25275FD600BA67F0 /* NativeAdCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C1249A925275FD600BA67F0 /* NativeAdCellTableViewCell.xib */; };
 		2C38409D24FDF42500C647C2 /* BUDAdmob_TemplateNativeFeedCustomEventAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C38409C24FDF42500C647C2 /* BUDAdmob_TemplateNativeFeedCustomEventAdapter.m */; };
 		2C4D6D8924F8CEEF00EF00CD /* TemplateBannerAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D6D8824F8CEEF00EF00CD /* TemplateBannerAdViewController.swift */; };
 		2C7ABC6A24FE5688000DA3C2 /* AdContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7ABC6924FE5688000DA3C2 /* AdContentCell.swift */; };
@@ -80,6 +83,9 @@
 		15A87CD224ADCBC30018DE6D /* BUDAdmob_RewardCustomEventAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDAdmob_RewardCustomEventAdapter.h; sourceTree = "<group>"; };
 		15A87CD324ADCBD70018DE6D /* AdmobAdapterDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AdmobAdapterDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		15A87CD424ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDAdmob_RewardCustomEventAdapter.m; sourceTree = "<group>"; };
+		2C1249A22526F54600BA67F0 /* YourNativeAdsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourNativeAdsViewController.swift; sourceTree = "<group>"; };
+		2C1249A825275FD600BA67F0 /* NativeAdCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAdCellTableViewCell.swift; sourceTree = "<group>"; };
+		2C1249A925275FD600BA67F0 /* NativeAdCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NativeAdCellTableViewCell.xib; sourceTree = "<group>"; };
 		2C38409B24FDF42500C647C2 /* BUDAdmob_TemplateNativeFeedCustomEventAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BUDAdmob_TemplateNativeFeedCustomEventAdapter.h; sourceTree = "<group>"; };
 		2C38409C24FDF42500C647C2 /* BUDAdmob_TemplateNativeFeedCustomEventAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUDAdmob_TemplateNativeFeedCustomEventAdapter.m; sourceTree = "<group>"; };
 		2C4D6D8824F8CEEF00EF00CD /* TemplateBannerAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateBannerAdViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +167,7 @@
 		15A87C9924AC6B0F0018DE6D /* AdmobAdapterDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2C1249A725275F9900BA67F0 /* CustomTableCell */,
 				2C7ABC6824FE5672000DA3C2 /* UI */,
 				15A87CD324ADCBD70018DE6D /* AdmobAdapterDemo-Bridging-Header.h */,
 				15A87C9A24AC6B0F0018DE6D /* AppDelegate.swift */,
@@ -176,6 +183,7 @@
 				15A87CA324AC6B120018DE6D /* Assets.xcassets */,
 				15A87CA524AC6B120018DE6D /* LaunchScreen.storyboard */,
 				15A87CA824AC6B120018DE6D /* Info.plist */,
+				2C1249A22526F54600BA67F0 /* YourNativeAdsViewController.swift */,
 			);
 			path = AdmobAdapterDemo;
 			sourceTree = "<group>";
@@ -227,6 +235,15 @@
 				E2F73477D9EB9CC758C7AAEC /* Pods-AdmobAdapterDemoTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		2C1249A725275F9900BA67F0 /* CustomTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				2C1249A825275FD600BA67F0 /* NativeAdCellTableViewCell.swift */,
+				2C1249A925275FD600BA67F0 /* NativeAdCellTableViewCell.xib */,
+			);
+			path = CustomTableCell;
 			sourceTree = "<group>";
 		};
 		2C7ABC6824FE5672000DA3C2 /* UI */ = {
@@ -318,7 +335,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = GuChan;
 				TargetAttributes = {
 					15A87C9624AC6B0F0018DE6D = {
@@ -360,6 +377,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C1249AB25275FD600BA67F0 /* NativeAdCellTableViewCell.xib in Resources */,
 				15A87CA724AC6B120018DE6D /* LaunchScreen.storyboard in Resources */,
 				15A87CA424AC6B120018DE6D /* Assets.xcassets in Resources */,
 				15A87CA224AC6B0F0018DE6D /* Main.storyboard in Resources */,
@@ -531,12 +549,14 @@
 				154484BD24B2BDD4006C68CF /* BUDAdmob_NativeFeedAd.m in Sources */,
 				2CE06DE625022C56004FC3CE /* BUDAdmob_TemplateBannerCustomEventAdapter.m in Sources */,
 				2C4D6D8924F8CEEF00EF00CD /* TemplateBannerAdViewController.swift in Sources */,
+				2C1249AA25275FD600BA67F0 /* NativeAdCellTableViewCell.swift in Sources */,
 				1525124A24AF340B0059C901 /* BUDAdmob_NativeFeedCustomEventAdapter.m in Sources */,
 				15A87CCD24AD7C880018DE6D /* NativeAdViewController.swift in Sources */,
 				15A87C9F24AC6B0F0018DE6D /* ViewController.swift in Sources */,
 				15A87C9B24AC6B0F0018DE6D /* AppDelegate.swift in Sources */,
 				15A87CCB24AC98600018DE6D /* RewardVideoController.swift in Sources */,
 				15A87CCF24AD7CB70018DE6D /* InterstitialVideoViewController.swift in Sources */,
+				2C1249A32526F54600BA67F0 /* YourNativeAdsViewController.swift in Sources */,
 				15A87C9D24AC6B0F0018DE6D /* SceneDelegate.swift in Sources */,
 				15A87CD524ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m in Sources */,
 				1547DD2F24B84A0A00075E41 /* BUDAdmob_FullScreenVideoCustomEventAdapter.m in Sources */,
@@ -621,6 +641,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -646,7 +667,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -682,6 +703,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -701,7 +723,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
