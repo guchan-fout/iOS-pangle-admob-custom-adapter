@@ -33,7 +33,9 @@ class YourNativeAdsViewController: UIViewController {
         setupTableView()
         //945529224 only image
         //945525827 video
-        requestNativeAds(placementID: "945525827", count: 1)
+        //requestNativeAds(placementID: "945525827", count: 1)
+        
+        requestTemplateNativeAds(placementID: "945530314", count: 1)
     }
     
     func setupTableView() {
@@ -50,6 +52,12 @@ class YourNativeAdsViewController: UIViewController {
         tableView.register(
             UINib(nibName: "NativeAdCellTableViewCell", bundle: nil),
             forCellReuseIdentifier: "NativeAdCell"
+        )
+        
+        
+        tableView.register(
+            UINib(nibName: "TemplateNativeAdCell", bundle: nil),
+            forCellReuseIdentifier: "TemplateAdCell"
         )
     }
     
@@ -71,6 +79,57 @@ class YourNativeAdsViewController: UIViewController {
         adManager.delegate = self
         
         adManager.loadAdData(withCount: count)
+    }
+    
+    /**
+     for template native ad
+     */
+    var templateAdManager: BUNativeExpressAdManager!
+    
+    //placementID : the ID when you created a placement
+    //count: the counts you want to download,DO NOT set more than 3
+    func requestTemplateNativeAds(placementID:String, count:Int) {
+        let slot = BUAdSlot.init()
+        slot.id = placementID
+        slot.adType = BUAdSlotAdType.feed
+        slot.position = BUAdSlotPosition.feed
+        slot.imgSize = BUSize.init()
+        slot.isSupportDeepLink = true
+        // Please set your ad view's size here
+        let adViewWidth = 300
+        let adViewHeight = 250
+        templateAdManager = BUNativeExpressAdManager.init(slot: slot, adSize: CGSize(width: adViewWidth, height: adViewHeight))
+        templateAdManager.delegate = self
+        templateAdManager.loadAd(count)
+    }
+    
+}
+
+// MARK:  BUNativeExpressAdViewDelegate
+extension YourNativeAdsViewController: BUNativeExpressAdViewDelegate {
+    func nativeExpressAdSuccess(toLoad nativeExpressAd: BUNativeExpressAdManager, views: [BUNativeExpressAdView]) {
+        for templateAdView in views {
+            templateAdView.render()
+        }
+    }
+    
+    func nativeExpressAdFail(toLoad nativeExpressAd: BUNativeExpressAdManager, error: Error?) {
+        print("\(#function)  load template failed with error: \(String(describing: error?.localizedDescription))")
+    }
+    
+    func nativeExpressAdViewRenderSuccess(_ nativeExpressAdView: BUNativeExpressAdView) {
+        // here to add nativeExpressAdView for displaying
+        contents.insert(nativeExpressAdView, at: adPosition)
+        nativeExpressAdView.rootViewController = self
+        self.tableView.reloadData()
+    }
+    
+    func nativeExpressAdViewRenderFail(_ nativeExpressAdView: BUNativeExpressAdView, error: Error?) {
+        print("\(#function)  render failed with error: \(String(describing: error?.localizedDescription))")
+    }
+    
+    func nativeExpressAdView(_ nativeExpressAdView: BUNativeExpressAdView, dislikeWithReason filterWords: [BUDislikeWords]) {
+        // do the action (e.g. remove the ad) if ad's dislike reason is been clicked
     }
 }
 
@@ -99,7 +158,15 @@ extension YourNativeAdsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let obj = contents[indexPath.row]
-        if (obj.isKind(of: BUNativeAd.self)) {
+        if (obj.isKind(of: BUNativeExpressAdView.self)) {
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: "TemplateAdCell",
+                for: indexPath) as! TemplateNativeAdCell
+            //cell.setup(nativeAd: obj as! BUNativeAd)
+            //cell.delegate = self
+            cell.containerView.addSubview(obj as! BUNativeExpressAdView)
+            return cell
+        } else if (obj.isKind(of: BUNativeAd.self)) {
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: "NativeAdCell",
                 for: indexPath) as! NativeAdCellTableViewCell
@@ -123,6 +190,9 @@ extension YourNativeAdsViewController: UITableViewDelegate {
             if(contents[indexPath.row] .isKind(of: BUNativeAd.self)) {
                 return 370
             }
+        }
+        if (contents[indexPath.row] .isKind(of: BUNativeExpressAdView.self)) {
+            return 250
         }
         return 50
     }

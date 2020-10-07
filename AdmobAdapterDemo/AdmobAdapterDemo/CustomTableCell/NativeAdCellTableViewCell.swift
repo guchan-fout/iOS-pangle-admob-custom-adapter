@@ -20,12 +20,9 @@ class NativeAdCellTableViewCell: UITableViewCell {
     @IBOutlet weak var desc: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var logoView: UIView!
-    
     @IBOutlet weak var adLabel: UILabel!
-    
     @IBOutlet weak var actionBtn: UIButton!
     
-    var nativeAdRelatedView = BUNativeAdRelatedView.init()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,6 +43,8 @@ class NativeAdCellTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    var nativeAdRelatedView = BUNativeAdRelatedView.init()
+    
     func setup(nativeAd: BUNativeAd) {
         title.text = nativeAd.data?.adTitle
         desc.text = nativeAd.data?.adDescription
@@ -62,9 +61,7 @@ class NativeAdCellTableViewCell: UITableViewCell {
                 addPangleLogo(parentView: videoView, nativeAdRelatedView: nativeAdRelatedView)
                 containerView.addSubview(videoView)
             }
-            
-
-        }else {
+        } else {
             //This is an image ad
             if let url = URL(string: nativeAd.data?.imageAry.first?.imageURL ?? "") {
                 if let data = try? Data(contentsOf: url) {
@@ -74,7 +71,6 @@ class NativeAdCellTableViewCell: UITableViewCell {
                     imageView.contentMode = .scaleAspectFit
                     imageView.image = image
                     addPangleLogo(parentView: imageView, nativeAdRelatedView: nativeAdRelatedView)
-                    
                     containerView.addSubview(imageView)
                 }
             }
@@ -100,6 +96,7 @@ class NativeAdCellTableViewCell: UITableViewCell {
             }
         }
         
+        // register the button to be clickable
         nativeAd.registerContainer(containerView, withClickableViews: [actionBtn])
     }
     
@@ -111,7 +108,6 @@ class NativeAdCellTableViewCell: UITableViewCell {
             parentView.addSubview(pangleLogoView)
         }
     }
-    
 }
 
 extension NativeAdCellTableViewCell: BUNativeAdDelegate{
