@@ -117,11 +117,11 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
 
 - (void)rewardedVideoAdWillVisible:(BURewardedVideoAd *)rewardedVideoAd {
     [self.delegate willPresentFullScreenView];
-    [self.delegate reportImpression];
     NSLog(@"%s", __func__);
 }
 
 - (void)rewardedVideoAdDidVisible:(BURewardedVideoAd *)rewardedVideoAd{
+    [self.delegate reportImpression];
     [self.delegate didStartVideo];
     NSLog(@"%s", __func__);
 }

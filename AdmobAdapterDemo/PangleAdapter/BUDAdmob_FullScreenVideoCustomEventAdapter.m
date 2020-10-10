@@ -52,11 +52,12 @@ NSString *const INTERSTITIAL_PANGLE_PLACEMENT_ID = @"placementID";
 }
 
 - (void)fullscreenVideoAdWillVisible:(BUFullscreenVideoAd *)fullscreenVideoAd{
-    [self.delegate customEventInterstitialWillPresent:self];
+    NSLog(@"%s",__func__);
 }
 
 - (void)fullscreenVideoAdDidVisible:(BUFullscreenVideoAd *)fullscreenVideoAd{
     NSLog(@"%s",__func__);
+    [self.delegate customEventInterstitialWillPresent:self];
 }
 
 - (void)fullscreenVideoAdDidClick:(BUFullscreenVideoAd *)fullscreenVideoAd{
