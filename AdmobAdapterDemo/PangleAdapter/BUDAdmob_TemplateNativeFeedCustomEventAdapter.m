@@ -53,7 +53,6 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
     BUSize *imgSize = [BUSize sizeBy:BUProposalSize_Feed228_150];
     slot.imgSize = imgSize;
     slot.position = BUAdSlotPositionFeed;
-    slot.isSupportDeepLink = YES;
     
     // Please set your ad view's size here
     CGFloat adViewWidth = adSize.size.width;
@@ -62,7 +61,7 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
     self.nativeExpressAdManager = [[BUNativeExpressAdManager alloc] initWithSlot:slot adSize:CGSizeMake(adViewWidth, adViewHeight)];
     self.nativeExpressAdManager.delegate = self;
     
-    [self.nativeExpressAdManager loadAd:ad_count];
+    [self.nativeExpressAdManager loadAdDataWithCount:ad_count];
 }
 
 

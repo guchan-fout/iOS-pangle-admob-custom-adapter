@@ -146,9 +146,6 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
     NSLog(@"%s", __func__);
 }
 
-- (void)rewardedVideoAdServerRewardDidFail:(BURewardedVideoAd *)rewardedVideoAd {
-    NSLog(@"%s", __func__);
-}
 
 - (void)rewardedVideoAdServerRewardDidSucceed:(BURewardedVideoAd *)rewardedVideoAd verify:(BOOL)verify {
     NSNumber *amount = [NSDecimalNumber numberWithInteger:rewardedVideoAd.rewardedVideoModel.rewardAmount];

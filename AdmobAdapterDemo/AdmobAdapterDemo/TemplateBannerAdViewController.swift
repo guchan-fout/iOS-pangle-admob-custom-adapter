@@ -17,18 +17,31 @@ class TemplateBannerAdViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    override func loadView() {
-        super.loadView()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBAction func load300_250Banner(_ sender: UIButton) {
         let adSize = GADAdSizeFromCGSize(CGSize(width: 300, height: 250))
         bannerView = GADBannerView(adSize: adSize)
         bannerView.adUnitID = "ca-app-pub-2748478898138855/2274454791"
         bannerView.rootViewController = self
         bannerView.delegate = self
         bannerView.load(GADRequest())
+    }
+    
+    @IBAction func load320_50Banner(_ sender: UIButton) {
+        let adSize = GADAdSizeFromCGSize(CGSize(width: 320, height: 50))
+        bannerView = GADBannerView(adSize: adSize)
+        bannerView.adUnitID = "ca-app-pub-2748478898138855/2708641394"
+        bannerView.rootViewController = self
+        bannerView.delegate = self
+        bannerView.load(GADRequest())
+    }
+    
+    override func loadView() {
+        super.loadView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {

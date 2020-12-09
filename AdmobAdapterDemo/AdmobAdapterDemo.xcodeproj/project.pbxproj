@@ -256,6 +256,7 @@
 			buildConfigurationList = 15A87CC124AC6B120018DE6D /* Build configuration list for PBXNativeTarget "AdmobAdapterDemo" */;
 			buildPhases = (
 				CDC7C50C59D615899B86D711 /* [CP] Check Pods Manifest.lock */,
+				39E73D4B4A701A82E1659F77 /* [CP] Prepare Artifacts */,
 				15A87C9324AC6B0F0018DE6D /* Sources */,
 				15A87C9424AC6B0F0018DE6D /* Frameworks */,
 				15A87C9524AC6B0F0018DE6D /* Resources */,
@@ -295,6 +296,7 @@
 			buildConfigurationList = 15A87CC724AC6B120018DE6D /* Build configuration list for PBXNativeTarget "AdmobAdapterDemoUITests" */;
 			buildPhases = (
 				4B9189869E777001ABBE4562 /* [CP] Check Pods Manifest.lock */,
+				01AED44F840D3921954EE553 /* [CP] Prepare Artifacts */,
 				15A87CB424AC6B120018DE6D /* Sources */,
 				15A87CB524AC6B120018DE6D /* Frameworks */,
 				15A87CB624AC6B120018DE6D /* Resources */,
@@ -385,6 +387,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		01AED44F840D3921954EE553 /* [CP] Prepare Artifacts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdmobAdapterDemo-AdmobAdapterDemoUITests/Pods-AdmobAdapterDemo-AdmobAdapterDemoUITests-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Prepare Artifacts";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdmobAdapterDemo-AdmobAdapterDemoUITests/Pods-AdmobAdapterDemo-AdmobAdapterDemoUITests-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdmobAdapterDemo-AdmobAdapterDemoUITests/Pods-AdmobAdapterDemo-AdmobAdapterDemoUITests-artifacts.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39E73D4B4A701A82E1659F77 /* [CP] Prepare Artifacts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdmobAdapterDemo/Pods-AdmobAdapterDemo-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Prepare Artifacts";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdmobAdapterDemo/Pods-AdmobAdapterDemo-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdmobAdapterDemo/Pods-AdmobAdapterDemo-artifacts.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4B9189869E777001ABBE4562 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

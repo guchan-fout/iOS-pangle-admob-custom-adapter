@@ -33,12 +33,14 @@ NSString *const TEMPLATE_BANNER_PANGLE_PLACEMENT_ID = @"placementID";
     }
 }
 
+
 - (void)getTemplateBannerAd:(NSString *)placementID adSize:(GADAdSize)adSize {
     NSLog(@"placementID=%@",placementID);
     NSLog(@"request ad size width = %f",adSize.size.width);
     NSLog(@"request ad size height = %f",adSize.size.height);
     
-    self.nativeExpressBannerView = [[BUNativeExpressBannerView alloc] initWithSlotID:placementID rootViewController:self.delegate.viewControllerForPresentingModalView adSize:CGSizeMake(adSize.size.width, adSize.size.height) IsSupportDeepLink:YES];
+    self.nativeExpressBannerView = [[BUNativeExpressBannerView alloc] initWithSlotID:placementID rootViewController:self.delegate.viewControllerForPresentingModalView adSize:CGSizeMake(adSize.size.width, adSize.size.height)];
+    
     self.nativeExpressBannerView.frame = CGRectMake(0, 0, adSize.size.width, adSize.size.height);
     self.nativeExpressBannerView.delegate = self;
     [self.nativeExpressBannerView loadAdData];
