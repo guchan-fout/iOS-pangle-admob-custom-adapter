@@ -17,11 +17,7 @@
 NSString *const INTERSTITIAL_PANGLE_PLACEMENT_ID = @"placementID";
 
 - (void)presentFromRootViewController:(nonnull UIViewController *)rootViewController {
-    if (self.fullScreenVideo.isAdValid) {
-        [self.fullScreenVideo showAdFromRootViewController:rootViewController];
-    } else {
-        NSLog(@"no ads to show");
-    }
+    [self.fullScreenVideo showAdFromRootViewController:rootViewController];
 }
 
 - (void)requestInterstitialAdWithParameter:(nullable NSString *)serverParameter label:(nullable NSString *)serverLabel request:(nonnull GADCustomEventRequest *)request {

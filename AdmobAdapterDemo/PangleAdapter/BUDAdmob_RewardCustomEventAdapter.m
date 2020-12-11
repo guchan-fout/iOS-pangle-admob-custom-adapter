@@ -84,16 +84,7 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
 
 #pragma mark - GADMediationRewardedAd
 - (void)presentFromViewController:(nonnull UIViewController *)viewController{
-    if ([_rewardedVideoAd isAdValid]) {
-        [_rewardedVideoAd showAdFromRootViewController:viewController ritScene:0 ritSceneDescribe:nil];
-    } else {
-        NSLog(@"No Pange reward ads to show.");
-        NSError *error =
-        [NSError errorWithDomain:@"GADMediationAdapterSampleAdNetwork"
-                            code:0
-                        userInfo:@{NSLocalizedDescriptionKey : @"Unable to display ad."}];
-        [self.delegate didFailToPresentWithError:error];
-    }
+    [_rewardedVideoAd showAdFromRootViewController:viewController ritScene:0 ritSceneDescribe:nil];
 }
 
 #pragma mark BURewardedVideoAdDelegate
