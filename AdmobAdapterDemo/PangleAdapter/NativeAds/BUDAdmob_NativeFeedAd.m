@@ -25,9 +25,11 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
     self = [super init];
     if (self) {
         self.nativeAd = nativeAd;
+        NSLog(@"imagemode is %ld",self.nativeAd.data.imageMode );
         // video view
-        if (self.nativeAd.data.imageMode == BUFeedVideoAdModeImage){
-            NSLog(@"imagemode is %ld",self.nativeAd.data.imageMode );
+        if (self.nativeAd.data.imageMode == BUFeedVideoAdModeImage ||
+            self.nativeAd.data.imageMode == BUFeedADModeSquareVideo ||
+            self.nativeAd.data.imageMode == BUFeedVideoAdModePortrait){
             self.relatedView = [[BUNativeAdRelatedView alloc] init];
             self.relatedView.videoAdView.hidden = NO;
             
@@ -58,18 +60,25 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 
 #pragma mark - getter methods
 - (BOOL)hasVideoContent {
-    if (self.nativeAd.data.imageMode == BUFeedVideoAdModeImage){
+    if (self.nativeAd.data.imageMode == BUFeedVideoAdModeImage ||
+        self.nativeAd.data.imageMode == BUFeedADModeSquareVideo ||
+        self.nativeAd.data.imageMode == BUFeedVideoAdModePortrait){
         return YES;
     }
     return NO;
 }
 
 - (nullable UIView *)mediaView {
-    UIImageView *logoView = self.relatedView.logoImageView;
-    CGRect parentFrame = self.relatedView.videoAdView.frame;
-    logoView.frame = CGRectMake(parentFrame.size.width-20, parentFrame.size.height-20, 20, 20);
-    [self.relatedView.videoAdView addSubview:logoView];
-    return self.relatedView.videoAdView;
+    if (self.relatedView) {
+        UIImageView *logoView = self.relatedView.logoImageView;
+        logoView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.relatedView.videoAdView addSubview:logoView];
+        [self.relatedView.videoAdView bringSubviewToFront:logoView];
+        [self.relatedView.videoAdView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[logoView(20)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(logoView)]];
+        [self.relatedView.videoAdView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[logoView(20)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(logoView)]];
+        return self.relatedView.videoAdView;
+    }
+    return nil;
 }
 
 - (NSString *)headline {
@@ -113,7 +122,12 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 }
 
 - (CGFloat)mediaContentAspectRatio {
-    if (self.nativeAd.data.imageAry[0].height) {
+    if (self.nativeAd &&
+        self.nativeAd.data &&
+        self.nativeAd.data.imageAry &&
+        self.nativeAd.data.imageAry.count &&
+        self.nativeAd.data.imageAry[0].height
+        ) {
         return self.nativeAd.data.imageAry[0].width / (self.nativeAd.data.imageAry[0].height + 1e-4);
     }
     return 0.0f;
