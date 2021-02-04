@@ -11,6 +11,7 @@
 #import <GoogleMobileAds/GADCustomEventNativeAd.h>
 #import <GoogleMobileAds/GADMultipleAdsAdLoaderOptions.h>
 #import "BUDAdmob_NativeFeedAd.h"
+#import "BUDAdmob_PangleTool.h"
 
 
 @interface BUDAdmob_NativeFeedCustomEventAdapter ()<GADCustomEventNativeAd,BUNativeAdsManagerDelegate>
@@ -52,6 +53,9 @@ NSString *const FEED_PANGLE_PLACEMENT_ID = @"placementID";
     NSString *placementID = [self processParams:serverParameter];
     NSLog(@"placementID=%@",placementID);
     if (placementID != nil){
+        /// tag
+        [BUDAdmob_PangleTool setPangleExtData];
+        
         [self getNativeAd:placementID count:count];
     } else {
         NSLog(@"no pangle placement ID for requesting.");

@@ -7,6 +7,7 @@
 
 #import "BUDAdmob_FullScreenVideoCustomEventAdapter.h"
 #import <BUAdSDK/BUAdSDK.h>
+#import "BUDAdmob_PangleTool.h"
 
 @interface BUDAdmob_FullScreenVideoCustomEventAdapter() <BUFullscreenVideoAdDelegate>
 @property (nonatomic, strong) BUFullscreenVideoAd *fullScreenVideo;
@@ -24,6 +25,9 @@ NSString *const INTERSTITIAL_PANGLE_PLACEMENT_ID = @"placementID";
     NSString *placementID = [self processParams:serverParameter];
     NSLog(@"placementID=%@",placementID);
     if (placementID != nil) {
+        /// tag
+        [BUDAdmob_PangleTool setPangleExtData];
+        
         self.fullScreenVideo = [[BUFullscreenVideoAd alloc] initWithSlotID:placementID];
         self.fullScreenVideo.delegate = self;
         [self.fullScreenVideo loadAdData];

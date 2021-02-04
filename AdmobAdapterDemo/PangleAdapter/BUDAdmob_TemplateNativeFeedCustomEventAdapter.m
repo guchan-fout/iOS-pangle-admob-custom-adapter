@@ -11,6 +11,7 @@
 #import <BUAdSDK/BUNativeExpressAdManager.h>
 #import <BUAdSDK/BUNativeExpressAdView.h>
 #import <GoogleMobileAds/GADCustomEventBanner.h>
+#import "BUDAdmob_PangleTool.h"
 
 @interface BUDAdmob_TemplateNativeFeedCustomEventAdapter ()<GADCustomEventBanner, BUNativeExpressAdViewDelegate>
 
@@ -30,6 +31,9 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 
     NSString *placementID = [self processParams:serverParameter];
     if (placementID != nil){
+        /// tag
+        [BUDAdmob_PangleTool setPangleExtData];
+        
         [self getTemplateNativeAd:placementID adSize:adSize];
     } else {
         NSLog(@"no pangle placement ID for requesting.");
@@ -103,7 +107,6 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
 
 - (void)nativeExpressAdViewWillShow:(BUNativeExpressAdView *)nativeExpressAdView {
     NSLog(@"nativeExpressAdViewWillShow");
-    [self.delegate customEventBannerWillPresentModal:self];
 }
 
 - (void)nativeExpressAdViewDidClick:(BUNativeExpressAdView *)nativeExpressAdView {

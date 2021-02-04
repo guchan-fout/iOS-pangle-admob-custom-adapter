@@ -10,6 +10,7 @@
 #import <BUAdSDK/BURewardedVideoModel.h>
 #import <BUAdSDK/BURewardedVideoAd.h>
 #import <BUAdSDK/BUAdSDK.h>
+#import "BUDAdmob_PangleTool.h"
 
 
 @interface BUDAdmob_RewardCustomEventAdapter ()<BURewardedVideoAdDelegate,GADMediationRewardedAd>
@@ -72,6 +73,9 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
     NSString *placementID = [self processParams:(credentials[@"parameter"])];
     NSLog(@"placementID=%@",placementID);
     if (placementID != nil){
+        /// tag
+        [BUDAdmob_PangleTool setPangleExtData];
+        
         self.rewardedVideoAd = [[BURewardedVideoAd alloc] initWithSlotID:placementID rewardedVideoModel:model];
         self.rewardedVideoAd.delegate = self;
         [self.rewardedVideoAd loadAdData];
