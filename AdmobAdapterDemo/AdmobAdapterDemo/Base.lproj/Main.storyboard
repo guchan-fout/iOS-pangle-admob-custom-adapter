@@ -9,6 +9,39 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Reward AdmobV8 View Controller-->
+        <scene sceneID="ag7-BV-bm7">
+            <objects>
+                <viewController modalPresentationStyle="currentContext" id="hIX-0y-pS4" customClass="RewardAdmobV8ViewController" customModule="AdmobAdapterDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9XE-AQ-RmK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPF-OD-vxg">
+                                <rect key="frame" x="26" y="59" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="onBackBtnClicked:" destination="hIX-0y-pS4" eventType="touchUpInside" id="88L-ya-U9g"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7y-cC-CFU">
+                                <rect key="frame" x="294" y="59" width="73" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Load"/>
+                                <connections>
+                                    <action selector="onLoadClicked:" destination="hIX-0y-pS4" eventType="touchUpInside" id="CtD-0g-gaP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ide-Qt-LHC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z1k-RX-mnb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2328.985507246377" y="-355.58035714285711"/>
+        </scene>
         <!--Interstitial AdmobV8 View Controller-->
         <scene sceneID="qut-iy-Xmq">
             <objects>
@@ -59,6 +92,7 @@
                         <segue destination="YCk-vE-m0c" kind="presentation" identifier="moveToTemplateBanner" id="78V-8m-HqY"/>
                         <segue destination="0Yl-O6-H8U" kind="presentation" identifier="moveToTemplateFeedAsBanner" id="jXP-eh-z5u"/>
                         <segue destination="Jd1-jR-hCS" kind="presentation" identifier="moveToIntersAdmobV8Video" id="9WJ-Pw-fed"/>
+                        <segue destination="hIX-0y-pS4" kind="presentation" identifier="moveToRewardAdmobV8Video" id="D6A-XO-dok"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

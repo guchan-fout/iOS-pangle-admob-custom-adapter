@@ -27,6 +27,7 @@
 		2C4D6D8924F8CEEF00EF00CD /* TemplateBannerAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D6D8824F8CEEF00EF00CD /* TemplateBannerAdViewController.swift */; };
 		2C68C6AA25CAADCC00B8AF60 /* BUDAdmob_PangleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C68C6A925CAADCC00B8AF60 /* BUDAdmob_PangleTool.m */; };
 		2C68C6BC25D3AC7200B8AF60 /* InterstitialAdmobV8ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C68C6BB25D3AC7200B8AF60 /* InterstitialAdmobV8ViewController.swift */; };
+		2C68C6C425DA654300B8AF60 /* RewardAdmobV8ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C68C6C325DA654300B8AF60 /* RewardAdmobV8ViewController.swift */; };
 		2C7ABC6A24FE5688000DA3C2 /* AdContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7ABC6924FE5688000DA3C2 /* AdContentCell.swift */; };
 		2C7ABC6C24FE5692000DA3C2 /* AdContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ABC6B24FE5692000DA3C2 /* AdContentCell.xib */; };
 		2CE06DE22500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE06DE12500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift */; };
@@ -88,6 +89,7 @@
 		2C68C6A825CAADCC00B8AF60 /* BUDAdmob_PangleTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BUDAdmob_PangleTool.h; path = ../../../../Downloads/Adapter/BUDAdmob_PangleTool.h; sourceTree = "<group>"; };
 		2C68C6A925CAADCC00B8AF60 /* BUDAdmob_PangleTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BUDAdmob_PangleTool.m; path = ../../../../Downloads/Adapter/BUDAdmob_PangleTool.m; sourceTree = "<group>"; };
 		2C68C6BB25D3AC7200B8AF60 /* InterstitialAdmobV8ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdmobV8ViewController.swift; sourceTree = "<group>"; };
+		2C68C6C325DA654300B8AF60 /* RewardAdmobV8ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdmobV8ViewController.swift; sourceTree = "<group>"; };
 		2C7ABC6924FE5688000DA3C2 /* AdContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdContentCell.swift; sourceTree = "<group>"; };
 		2C7ABC6B24FE5692000DA3C2 /* AdContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdContentCell.xib; sourceTree = "<group>"; };
 		2CE06DE12500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateFeedOfAdmobBannerAdViewViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				2CE06DE12500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift */,
 				15A87CCE24AD7CB70018DE6D /* InterstitialVideoViewController.swift */,
 				2C68C6BB25D3AC7200B8AF60 /* InterstitialAdmobV8ViewController.swift */,
+				2C68C6C325DA654300B8AF60 /* RewardAdmobV8ViewController.swift */,
 				15A87CA024AC6B0F0018DE6D /* Main.storyboard */,
 				1525124624AF282A0059C901 /* UnifiedNativeAdView.xib */,
 				15A87CA324AC6B120018DE6D /* Assets.xcassets */,
@@ -543,6 +546,7 @@
 				1525124A24AF340B0059C901 /* BUDAdmob_NativeFeedCustomEventAdapter.m in Sources */,
 				15A87CCD24AD7C880018DE6D /* NativeAdViewController.swift in Sources */,
 				15A87C9F24AC6B0F0018DE6D /* ViewController.swift in Sources */,
+				2C68C6C425DA654300B8AF60 /* RewardAdmobV8ViewController.swift in Sources */,
 				15A87C9B24AC6B0F0018DE6D /* AppDelegate.swift in Sources */,
 				15A87CCB24AC98600018DE6D /* RewardVideoController.swift in Sources */,
 				2C68C6BC25D3AC7200B8AF60 /* InterstitialAdmobV8ViewController.swift in Sources */,
