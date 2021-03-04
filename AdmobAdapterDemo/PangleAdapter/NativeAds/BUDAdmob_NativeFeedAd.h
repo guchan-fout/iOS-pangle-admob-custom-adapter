@@ -11,6 +11,6 @@
 
 @interface BUDAdmob_NativeFeedAd: NSObject <GADMediatedUnifiedNativeAd>
 
-- (instancetype)initWithBUNativeAd:(BUNativeAd *)nativeAd;
+- (instancetype)initWithBUNativeAd:(BUNativeAd *)nativeAd disableImageLoading:(BOOL)disableImageLoading;
 
 @end

@@ -21,30 +21,33 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 
 @implementation BUDAdmob_NativeFeedAd
 
-- (instancetype)initWithBUNativeAd:(BUNativeAd *)nativeAd {
+- (instancetype)initWithBUNativeAd:(BUNativeAd *)nativeAd disableImageLoading:(BOOL)disableImageLoading {
     self = [super init];
     if (self) {
         self.nativeAd = nativeAd;
-        NSLog(@"imagemode is %ld",self.nativeAd.data.imageMode );
-        // video view
-        if (self.nativeAd.data.imageMode == BUFeedVideoAdModeImage ||
-            self.nativeAd.data.imageMode == BUFeedADModeSquareVideo ||
-            self.nativeAd.data.imageMode == BUFeedVideoAdModePortrait){
-            self.relatedView = [[BUNativeAdRelatedView alloc] init];
-            self.relatedView.videoAdView.hidden = NO;
+        if (nativeAd && nativeAd.data) {
+            BUMaterialMeta *data = nativeAd.data;
+            // video view
+            if (
+                data.imageMode == BUFeedVideoAdModeImage ||
+                data.imageMode == BUFeedVideoAdModePortrait ||
+                data.imageMode == BUFeedADModeSquareVideo
+                ){
+                self.relatedView = [[BUNativeAdRelatedView alloc] init];
+                self.relatedView.videoAdView.hidden = NO;
+                [self.relatedView refreshData:nativeAd];
+            }
+            // main image of the ad
+            if (data.imageAry && data.imageAry.count && data.imageAry[0].imageURL != nil){
+                GADNativeAdImage *adImage = [[GADNativeAdImage alloc]initWithURL:[NSURL URLWithString:data.imageAry[0].imageURL] scale:[UIScreen mainScreen].scale];
+                self.mappedImages = @[adImage];
+            }
             
-            [self.relatedView refreshData:nativeAd];
-        }
-        // main image of the ad
-        if (self.nativeAd.data.imageAry[0].imageURL != nil){
-            GADNativeAdImage *adImage = [[GADNativeAdImage alloc] initWithImage:[self loadImage:self.nativeAd.data.imageAry[0].imageURL]];
-            self.mappedImages = @[adImage];
-        }
-        
-        // icon image of the ad
-        if (self.nativeAd.data.icon.imageURL != nil){
-            GADNativeAdImage *iconImage = [[GADNativeAdImage alloc] initWithImage:[self loadImage:self.nativeAd.data.icon.imageURL]];
-            self.mappedIcon = iconImage;
+            // icon image of the ad
+            if (data.icon && data.icon.imageURL != nil){
+                GADNativeAdImage *iconImage = [[GADNativeAdImage alloc] initWithURL:[NSURL URLWithString:self.nativeAd.data.icon.imageURL] scale:[UIScreen mainScreen].scale];
+                self.mappedIcon = iconImage;
+            }
         }
     }
     return self;
@@ -60,9 +63,13 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 
 #pragma mark - getter methods
 - (BOOL)hasVideoContent {
-    if (self.nativeAd.data.imageMode == BUFeedVideoAdModeImage ||
-        self.nativeAd.data.imageMode == BUFeedADModeSquareVideo ||
-        self.nativeAd.data.imageMode == BUFeedVideoAdModePortrait){
+    
+    if (
+        self.nativeAd && self.nativeAd.data &&
+        (self.nativeAd.data.imageMode == BUFeedVideoAdModeImage ||
+         self.nativeAd.data.imageMode == BUFeedVideoAdModePortrait ||
+         self.nativeAd.data.imageMode == BUFeedADModeSquareVideo)
+        ){
         return YES;
     }
     return NO;
@@ -74,7 +81,7 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
         logoView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.relatedView.videoAdView addSubview:logoView];
         [self.relatedView.videoAdView bringSubviewToFront:logoView];
-        [self.relatedView.videoAdView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[logoView(25)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(logoView)]];
+        [self.relatedView.videoAdView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[logoView(40)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(logoView)]];
         [self.relatedView.videoAdView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[logoView(20)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(logoView)]];
         return self.relatedView.videoAdView;
     }
@@ -82,26 +89,42 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 }
 
 - (NSString *)headline {
-    return self.nativeAd.data.AdTitle;
+    if (self.nativeAd && self.nativeAd.data) {
+        return self.nativeAd.data.AdTitle;
+    }
+    return nil;
 }
 
 - (NSString *)body {
-    return self.nativeAd.data.AdDescription;
+    if (self.nativeAd && self.nativeAd.data) {
+        return self.nativeAd.data.AdDescription;
+    }
+    return nil;
 }
 
 - (NSString *)callToAction {
-    return self.nativeAd.data.buttonText;
+    if (self.nativeAd && self.nativeAd.data) {
+        return self.nativeAd.data.buttonText;
+    }
+    return nil;
 }
 
 - (NSDecimalNumber *)starRating {
-    return [[NSDecimalNumber alloc] initWithInteger:self.nativeAd.data.score];
+    if (self.nativeAd && self.nativeAd.data) {
+        return [[NSDecimalNumber alloc] initWithInteger:self.nativeAd.data.score];
+    }
+    return nil;
 }
 
 - (NSString *)advertiser {
-    return self.nativeAd.data.source;
+    if (self.nativeAd && self.nativeAd.data) {
+        return self.nativeAd.data.source;
+    }
+    return nil;
 }
 
 - (GADNativeAdImage *)icon {
+    
     return self.mappedIcon;
 }
 
@@ -110,7 +133,10 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 }
 
 - (NSDictionary *)extraAssets {
-    return @{BUDNativeAdTranslateKey:self.nativeAd};
+    if (self.nativeAd) {
+        return @{BUDNativeAdTranslateKey:self.nativeAd};
+    }
+    return nil;
 }
 
 - (NSString *)price {
@@ -140,12 +166,12 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 
 
 - (void)didRenderInView:(nonnull UIView *)view
-    clickableAssetViews:
-(nonnull NSDictionary<GADUnifiedNativeAssetIdentifier, UIView *> *)clickableAssetViews
- nonclickableAssetViews:
-(nonnull NSDictionary<GADUnifiedNativeAssetIdentifier, UIView *> *)nonclickableAssetViews
+    clickableAssetViews:(nonnull NSDictionary<GADUnifiedNativeAssetIdentifier, UIView *> *)clickableAssetViews
+ nonclickableAssetViews:(nonnull NSDictionary<GADUnifiedNativeAssetIdentifier, UIView *> *)nonclickableAssetViews
          viewController:(nonnull UIViewController *)viewController {
-    [self.nativeAd registerContainer:view withClickableViews:@[view]];
+    if (self.nativeAd && view) {
+        [self.nativeAd registerContainer:view withClickableViews:@[view]];
+    }
 }
 
 
