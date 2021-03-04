@@ -39,13 +39,13 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
             }
             // main image of the ad
             if (data.imageAry && data.imageAry.count && data.imageAry[0].imageURL != nil){
-                GADNativeAdImage *adImage = [[GADNativeAdImage alloc]initWithURL:[NSURL URLWithString:data.imageAry[0].imageURL] scale:[UIScreen mainScreen].scale];
+                GADNativeAdImage *adImage = [[GADNativeAdImage alloc] initWithImage:[self loadImage:self.nativeAd.data.imageAry[0].imageURL]];
                 self.mappedImages = @[adImage];
             }
             
             // icon image of the ad
             if (data.icon && data.icon.imageURL != nil){
-                GADNativeAdImage *iconImage = [[GADNativeAdImage alloc] initWithURL:[NSURL URLWithString:self.nativeAd.data.icon.imageURL] scale:[UIScreen mainScreen].scale];
+                GADNativeAdImage *iconImage = [[GADNativeAdImage alloc] initWithImage:[self loadImage:self.nativeAd.data.icon.imageURL]];
                 self.mappedIcon = iconImage;
             }
         }
@@ -63,7 +63,6 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 
 #pragma mark - getter methods
 - (BOOL)hasVideoContent {
-    
     if (
         self.nativeAd && self.nativeAd.data &&
         (self.nativeAd.data.imageMode == BUFeedVideoAdModeImage ||
