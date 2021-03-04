@@ -70,11 +70,11 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 
 - (nullable UIView *)mediaView {
     if (self.relatedView) {
-        UIImageView *logoView = self.relatedView.logoImageView;
+        UIImageView *logoView = self.relatedView.logoADImageView;
         logoView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.relatedView.videoAdView addSubview:logoView];
         [self.relatedView.videoAdView bringSubviewToFront:logoView];
-        [self.relatedView.videoAdView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[logoView(20)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(logoView)]];
+        [self.relatedView.videoAdView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[logoView(25)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(logoView)]];
         [self.relatedView.videoAdView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[logoView(20)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(logoView)]];
         return self.relatedView.videoAdView;
     }
