@@ -76,7 +76,7 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 }
 
 - (nullable UIView *)mediaView {
-    return self.relatedView ? self.relatedView.videoAdView : nil;
+    return self.relatedView.videoAdView;
 }
 
 - (NSString *)headline {
