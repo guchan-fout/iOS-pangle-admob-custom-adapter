@@ -26,6 +26,7 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
     if (self) {
         self.nativeAd = nativeAd;
         self.relatedView = [[BUNativeAdRelatedView alloc] init];
+        [self.relatedView refreshData:nativeAd];
         if (nativeAd && nativeAd.data) {
             BUMaterialMeta *data = nativeAd.data;
             // video view
@@ -36,7 +37,6 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
                 ){
                 
                 self.relatedView.videoAdView.hidden = NO;
-                [self.relatedView refreshData:nativeAd];
             }
             // main image of the ad
             if (data.imageAry && data.imageAry.count && data.imageAry[0].imageURL != nil){
