@@ -19,9 +19,7 @@
 		15A87CA724AC6B120018DE6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A87CA524AC6B120018DE6D /* LaunchScreen.storyboard */; };
 		15A87CB224AC6B120018DE6D /* AdmobAdapterDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A87CB124AC6B120018DE6D /* AdmobAdapterDemoTests.swift */; };
 		15A87CBD24AC6B120018DE6D /* AdmobAdapterDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A87CBC24AC6B120018DE6D /* AdmobAdapterDemoUITests.swift */; };
-		15A87CCB24AC98600018DE6D /* RewardVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A87CCA24AC98600018DE6D /* RewardVideoController.swift */; };
 		15A87CCD24AD7C880018DE6D /* NativeAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A87CCC24AD7C880018DE6D /* NativeAdViewController.swift */; };
-		15A87CCF24AD7CB70018DE6D /* InterstitialVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A87CCE24AD7CB70018DE6D /* InterstitialVideoViewController.swift */; };
 		15A87CD524ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A87CD424ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m */; };
 		2C38409D24FDF42500C647C2 /* BUDAdmob_TemplateNativeFeedCustomEventAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C38409C24FDF42500C647C2 /* BUDAdmob_TemplateNativeFeedCustomEventAdapter.m */; };
 		2C4D6D8924F8CEEF00EF00CD /* TemplateBannerAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D6D8824F8CEEF00EF00CD /* TemplateBannerAdViewController.swift */; };
@@ -77,9 +75,7 @@
 		15A87CB824AC6B120018DE6D /* AdmobAdapterDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdmobAdapterDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15A87CBC24AC6B120018DE6D /* AdmobAdapterDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmobAdapterDemoUITests.swift; sourceTree = "<group>"; };
 		15A87CBE24AC6B120018DE6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		15A87CCA24AC98600018DE6D /* RewardVideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardVideoController.swift; sourceTree = "<group>"; };
 		15A87CCC24AD7C880018DE6D /* NativeAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAdViewController.swift; sourceTree = "<group>"; };
-		15A87CCE24AD7CB70018DE6D /* InterstitialVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialVideoViewController.swift; sourceTree = "<group>"; };
 		15A87CD224ADCBC30018DE6D /* BUDAdmob_RewardCustomEventAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDAdmob_RewardCustomEventAdapter.h; sourceTree = "<group>"; };
 		15A87CD324ADCBD70018DE6D /* AdmobAdapterDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AdmobAdapterDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		15A87CD424ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDAdmob_RewardCustomEventAdapter.m; sourceTree = "<group>"; };
@@ -173,11 +169,9 @@
 				15A87C9A24AC6B0F0018DE6D /* AppDelegate.swift */,
 				15A87C9C24AC6B0F0018DE6D /* SceneDelegate.swift */,
 				15A87C9E24AC6B0F0018DE6D /* ViewController.swift */,
-				15A87CCA24AC98600018DE6D /* RewardVideoController.swift */,
 				15A87CCC24AD7C880018DE6D /* NativeAdViewController.swift */,
 				2C4D6D8824F8CEEF00EF00CD /* TemplateBannerAdViewController.swift */,
 				2CE06DE12500D237004FC3CE /* TemplateFeedOfAdmobBannerAdViewViewController.swift */,
-				15A87CCE24AD7CB70018DE6D /* InterstitialVideoViewController.swift */,
 				2C68C6BB25D3AC7200B8AF60 /* InterstitialAdmobV8ViewController.swift */,
 				2C68C6C325DA654300B8AF60 /* RewardAdmobV8ViewController.swift */,
 				15A87CA024AC6B0F0018DE6D /* Main.storyboard */,
@@ -548,9 +542,7 @@
 				15A87C9F24AC6B0F0018DE6D /* ViewController.swift in Sources */,
 				2C68C6C425DA654300B8AF60 /* RewardAdmobV8ViewController.swift in Sources */,
 				15A87C9B24AC6B0F0018DE6D /* AppDelegate.swift in Sources */,
-				15A87CCB24AC98600018DE6D /* RewardVideoController.swift in Sources */,
 				2C68C6BC25D3AC7200B8AF60 /* InterstitialAdmobV8ViewController.swift in Sources */,
-				15A87CCF24AD7CB70018DE6D /* InterstitialVideoViewController.swift in Sources */,
 				15A87C9D24AC6B0F0018DE6D /* SceneDelegate.swift in Sources */,
 				15A87CD524ADCBD70018DE6D /* BUDAdmob_RewardCustomEventAdapter.m in Sources */,
 				1547DD2F24B84A0A00075E41 /* BUDAdmob_FullScreenVideoCustomEventAdapter.m in Sources */,
