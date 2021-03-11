@@ -10,7 +10,7 @@ import UIKit
 
 class RewardAdmobV8ViewController: UIViewController, GADFullScreenContentDelegate {
     
-    var rewardedAd: GADRewardedAdBeta?
+    var rewardedAd: GADRewardedAd?
     
     
     @IBAction func onBackBtnClicked(_ sender: UIButton) {
@@ -26,7 +26,7 @@ class RewardAdmobV8ViewController: UIViewController, GADFullScreenContentDelegat
         super.viewDidLoad()
         
         let request = GADRequest()
-        GADRewardedAdBeta.load(withAdUnitID: "ca-app-pub-2748478898138855/2704625864", request: request, completionHandler: { (ad, error) in
+        GADRewardedAd.load(withAdUnitID: "ca-app-pub-2748478898138855/2704625864", request: request, completionHandler: { (ad, error) in
             if let error = error {
                 print("Rewarded ad failed to load with error: \(error.localizedDescription)")
                 
@@ -41,8 +41,8 @@ class RewardAdmobV8ViewController: UIViewController, GADFullScreenContentDelegat
         if let ad = rewardedAd {
             ad.present(fromRootViewController: self,
                        userDidEarnRewardHandler: {
-                        let reward = ad.adReward
                         // TODO: Reward the user.
+                        //let reward = ad.adReward
                        })
         } else {
             print("Ad wasn't ready")

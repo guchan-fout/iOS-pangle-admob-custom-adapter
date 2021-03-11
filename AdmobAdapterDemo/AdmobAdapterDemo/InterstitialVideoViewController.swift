@@ -8,62 +8,55 @@
 
 import UIKit
 
-class InterstitialVideoViewController: UIViewController {
+class InterstitialVideoViewController: UIViewController, GADFullScreenContentDelegate {
     
-    var interstitial: GADInterstitial!
+    var interstitial: GADInterstitialAd!
     
-    @IBAction func onBackClick(_ sender: UIButton) {
+    @IBAction func onBackBtnClicked(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func onShowClicked(_ sender: UIButton) {
+        showInterstitial()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-2748478898138855/9253482066")
-        interstitial.delegate = self
         let request = GADRequest()
-        interstitial.load(request)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(false)
-    }
-}
+        GADInterstitialAd.load(withAdUnitID:"ca-app-pub-2748478898138855/9253482066",
+                                   request: request,
+                                   completionHandler: { (ad, error) in
+                                    if let error = error {
+                                        print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                                        return
+                                    }
+                                    self.interstitial = ad
+                                    self.interstitial.fullScreenContentDelegate = self
+                                    
 
-extension InterstitialVideoViewController: GADInterstitialDelegate {
-    /// Tells the delegate an ad request succeeded.
-    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-        print("interstitialDidReceiveAd")
-        if interstitial.isReady {
-            interstitial.present(fromRootViewController: self)
-        } else {
-            print("Ad wasn't ready")
-        }
+                                   })
     }
     
-    /// Tells the delegate an ad request failed.
-    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-        print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    
+    func showInterstitial() {
+        if let ad = self.interstitial {
+        ad.present(fromRootViewController: self)
+      } else {
+        print("Ad wasn't ready")
+      }
     }
     
-    /// Tells the delegate that an interstitial will be presented.
-    func interstitialWillPresentScreen(_ ad: GADInterstitial) {
-        print("interstitialWillPresentScreen")
+    func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+      print("Ad did present full screen content.")
     }
-    
-    /// Tells the delegate the interstitial is to be animated off the screen.
-    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
-        print("interstitialWillDismissScreen")
+
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+      print("Ad failed to present full screen content with error \(error.localizedDescription).")
     }
-    
-    /// Tells the delegate the interstitial had been animated off the screen.
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        print("interstitialDidDismissScreen")
-    }
-    
-    /// Tells the delegate that a user click will open another app
-    /// (such as the App Store), backgrounding the current app.
-    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
-        print("interstitialWillLeaveApplication")
+
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+      print("Ad did dismiss full screen content.")
     }
 }

@@ -1,9 +1,15 @@
 PODS:
-  - Bytedance-UnionAD (3.3.6.2)
-  - Google-Mobile-Ads-SDK (8.0.0):
+  - Ads-Global (3.4.2.8):
+    - Ads-Global/BUAdSDK (= 3.4.2.8)
+  - Ads-Global/BUAdSDK (3.4.2.8):
+    - Ads-Global/BUFoundation
+    - Ads-Global/International
+  - Ads-Global/BUFoundation (3.4.2.8)
+  - Ads-Global/International (3.4.2.8)
+  - Google-Mobile-Ads-SDK (8.1.0):
     - GoogleAppMeasurement (~> 7.0)
     - GoogleUserMessagingPlatform (~> 1.1)
-  - GoogleAppMeasurement (7.5.0):
+  - GoogleAppMeasurement (7.8.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
     - GoogleUtilities/MethodSwizzler (~> 7.0)
     - GoogleUtilities/Network (~> 7.0)
@@ -35,12 +41,12 @@ PODS:
   - PromisesObjC (1.2.12)
 
 DEPENDENCIES:
-  - Bytedance-UnionAD
+  - Ads-Global
   - Google-Mobile-Ads-SDK
 
 SPEC REPOS:
   trunk:
-    - Bytedance-UnionAD
+    - Ads-Global
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUserMessagingPlatform
@@ -49,14 +55,14 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Bytedance-UnionAD: e9f83939e2a5d857e104f6a91035bbf504b603e5
-  Google-Mobile-Ads-SDK: 9509c62617e8d77e2524833eed0b73dd028f0bc6
-  GoogleAppMeasurement: 65a1071e5f52f63ab03d0a4d814a54fd762d885a
+  Ads-Global: 66529368a052b504b56a17aa2f54e3b4ad005daf
+  Google-Mobile-Ads-SDK: efb7fb74595668fbbe680f0d1c06f9a8ff694c7c
+  GoogleAppMeasurement: dccff6095ea1cd8972a8b96d0ee38b9e6d67acbb
   GoogleUserMessagingPlatform: b168e8c46cd8f92aa3e34b584c4ca78a411ce367
   GoogleUtilities: 31c5b01f978a70c6cff2afc6272b3f1921614b43
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: 97151649507c0300a24f5a8494eae59bab1e60ac
+PODFILE CHECKSUM: 08582d5bc5cb9fc36f45011691e044c18d2bf119
 
 COCOAPODS: 1.10.1

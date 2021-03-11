@@ -8,14 +8,14 @@
 
 import UIKit
 
-class NativeAdViewController: UIViewController, GADVideoControllerDelegate {
+class NativeAdViewController: UIViewController {
     
     /// The ad loader. You must keep a strong reference to the GADAdLoader during the ad loading
     /// process.
     var adLoader: GADAdLoader!
     
     /// The native ad view that is being presented.
-    var nativeAdView: GADUnifiedNativeAdView!
+    var nativeAdView: GADNativeAdView!
     
     /// The ad unit ID.
     //adUnitID = "ca-app-pub-3940256099942544/3986624511" is test id from admob
@@ -35,13 +35,13 @@ class NativeAdViewController: UIViewController, GADVideoControllerDelegate {
         // Do any additional setup after loading the view.
         adLoader = GADAdLoader(
             adUnitID: adUnitID, rootViewController: self,
-            adTypes: [.unifiedNative], options: nil)
+            adTypes: [.native], options: nil)
         adLoader.delegate = self
         adLoader.load(GADRequest())
         
         guard
-            let nibObjects = Bundle.main.loadNibNamed("UnifiedNativeAdView", owner: nil, options: nil),
-            let adView = nibObjects.first as? GADUnifiedNativeAdView
+            let nibObjects = Bundle.main.loadNibNamed("NativeAdView", owner: nil, options: nil),
+            let adView = nibObjects.first as? GADNativeAdView
             else {
                 assert(false, "Could not load nib file for adView")
         }
@@ -53,7 +53,7 @@ class NativeAdViewController: UIViewController, GADVideoControllerDelegate {
         super.viewDidAppear(false)
     }
     
-    func setAdView(_ view: GADUnifiedNativeAdView) {
+    func setAdView(_ view: GADNativeAdView) {
         // Remove the previous ad view.
         nativeAdView = view
         nativeAdView.isHidden = true
@@ -84,16 +84,23 @@ class NativeAdViewController: UIViewController, GADVideoControllerDelegate {
 
 extension NativeAdViewController: GADAdLoaderDelegate {
     
-    func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: GADRequestError) {
+    func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
         print("\(adLoader) failed with error: \(error.localizedDescription)")
-        
     }
     
 }
 
-extension NativeAdViewController: GADUnifiedNativeAdLoaderDelegate {
+extension NativeAdViewController: GADVideoControllerDelegate {
+
+  func videoControllerDidEndVideoPlayback(_ videoController: GADVideoController) {
+    print("\(videoController) Video playback has ended.")
+  }
     
-    func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADUnifiedNativeAd) {
+}
+
+extension NativeAdViewController: GADNativeAdLoaderDelegate {
+    
+    func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
         nativeAdView.isHidden = false
         // Set ourselves as the native ad delegate to be notified of native ad events.
         nativeAd.delegate = self
@@ -166,29 +173,29 @@ extension NativeAdViewController: GADUnifiedNativeAdLoaderDelegate {
 }
 
 // MARK: - GADUnifiedNativeAdDelegate implementation
-extension NativeAdViewController: GADUnifiedNativeAdDelegate {
+extension NativeAdViewController: GADNativeAdDelegate {
     
-    func nativeAdDidRecordClick(_ nativeAd: GADUnifiedNativeAd) {
+    func nativeAdDidRecordClick(_ nativeAd: GADNativeAd) {
         print("\(#function) called")
     }
     
-    func nativeAdDidRecordImpression(_ nativeAd: GADUnifiedNativeAd) {
+    func nativeAdDidRecordImpression(_ nativeAd: GADNativeAd) {
         print("\(#function) called")
     }
     
-    func nativeAdWillPresentScreen(_ nativeAd: GADUnifiedNativeAd) {
+    func nativeAdWillPresentScreen(_ nativeAd: GADNativeAd) {
         print("\(#function) called")
     }
     
-    func nativeAdWillDismissScreen(_ nativeAd: GADUnifiedNativeAd) {
+    func nativeAdWillDismissScreen(_ nativeAd: GADNativeAd) {
         print("\(#function) called")
     }
     
-    func nativeAdDidDismissScreen(_ nativeAd: GADUnifiedNativeAd) {
+    func nativeAdDidDismissScreen(_ nativeAd: GADNativeAd) {
         print("\(#function) called")
     }
     
-    func nativeAdWillLeaveApplication(_ nativeAd: GADUnifiedNativeAd) {
+    func nativeAdWillLeaveApplication(_ nativeAd: GADNativeAd) {
         print("\(#function) called")
     }
 }

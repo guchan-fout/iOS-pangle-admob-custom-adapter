@@ -26,9 +26,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7y-cC-CFU">
-                                <rect key="frame" x="294" y="59" width="73" height="30"/>
+                                <rect key="frame" x="308" y="59" width="73" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Load"/>
+                                <state key="normal" title="Show"/>
                                 <connections>
                                     <action selector="onLoadClicked:" destination="hIX-0y-pS4" eventType="touchUpInside" id="CtD-0g-gaP"/>
                                 </connections>

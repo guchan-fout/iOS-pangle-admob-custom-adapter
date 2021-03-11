@@ -10,7 +10,7 @@ import UIKit
 
 class InterstitialAdmobV8ViewController: UIViewController, GADFullScreenContentDelegate {
     
-    var interstitial: GADInterstitialAdBeta!
+    var interstitial: GADInterstitialAd!
     
     @IBAction func onBackBtnClicked(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -25,7 +25,7 @@ class InterstitialAdmobV8ViewController: UIViewController, GADFullScreenContentD
         super.viewDidLoad()
         
         let request = GADRequest()
-        GADInterstitialAdBeta.load(withAdUnitID:"ca-app-pub-2748478898138855/9253482066",
+        GADInterstitialAd.load(withAdUnitID:"ca-app-pub-2748478898138855/9253482066",
                                    request: request,
                                    completionHandler: { (ad, error) in
                                     if let error = error {
