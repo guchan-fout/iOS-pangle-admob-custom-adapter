@@ -157,8 +157,8 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 
 
 - (void)didRenderInView:(nonnull UIView *)view
-    clickableAssetViews:(nonnull NSDictionary<GADUnifiedNativeAssetIdentifier, UIView *> *)clickableAssetViews
- nonclickableAssetViews:(nonnull NSDictionary<GADUnifiedNativeAssetIdentifier, UIView *> *)nonclickableAssetViews
+    clickableAssetViews:(nonnull NSDictionary<GADNativeAssetIdentifier, UIView *> *)clickableAssetViews
+ nonclickableAssetViews:(nonnull NSDictionary<GADNativeAssetIdentifier, UIView *> *)nonclickableAssetViews
          viewController:(nonnull UIViewController *)viewController {
     if (self.nativeAd && view) {
         [self.nativeAd registerContainer:view withClickableViews:@[view]];
