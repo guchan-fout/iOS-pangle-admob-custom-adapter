@@ -90,7 +90,7 @@ and [Initialize Pangle SDK](https://www.pangleglobal.com/help/doc/6034ac73511c57
 <br>
 <img src="./pics/adapter-download.png" alt="drawing" width="400"/>
 
-- You can find simple use cases from [Demo](./AdmobAdapterDemo).
+- You can find simple use cases from [Demo](../AdmobAdapterDemo).
 
 
 - You need to add these two files into your project to support native ad's adapter [mapping](https://developers.google.com/admob/ios/native/native-custom-events#map_native_ads).

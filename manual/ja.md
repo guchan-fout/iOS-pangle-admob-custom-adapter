@@ -92,7 +92,7 @@
 <img src="./pics/adapter-download.png" alt="drawing" width="400"/>
 
 
-- [Demo](./AdmobAdapterDemo)から簡単な使用例を確認できます。
+- [Demo](../AdmobAdapterDemo)から簡単な使用例を確認できます。
 
 - ネイティブ広告のアダプターの[mapping](https://developers.google.com/admob/ios/native/native-custom-events#map_native_ads)をサポートするには、下記2つのファイルをプロジェクトに追加する必要があります。
 <br>
