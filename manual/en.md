@@ -63,13 +63,11 @@
 <img src="./pics/add-custom-event.png" alt="drawing" width="400"/>
 
 
-- Set info
+- Add adapter's class name to Class Name.
+    - **Class Name**: the adapter class's name , for example,`BUDAdmob_RewardCustomEventAdapter`
 
- - Add adapter's class name to Class Name.
-   - **Class Name**: the adapter class's name , for example,`BUDAdmob_RewardCustomEventAdapter`
-
- - Add `{"placementID":"your slot ID"}` to Parameter.
-   - **Parameter**: Add {"placementID":"[your placement ID on Pangle](#placementID)"} to Parameter , for example,`{"placementID": "1234567"`
+- Add `{"placementID":"your slot ID"}` to Parameter.
+    - **Parameter**: Add {"placementID":"[your placement ID on Pangle](#placementID)"} to Parameter , for example,`{"placementID": "1234567"`
 <br>
 <img src="./pics/mediation-param.png" alt="drawing" width="400"/>
 
