@@ -63,12 +63,10 @@
 <img src="./pics/add-custom-event.png" alt="drawing" width="400"/>
 
 
-- 必要な情報設定
-
- - Adapterのクラス名を`Class Name`枠に追加します。
+- Adapterのクラス名を`Class Name`枠に追加します。
    - **Class Name**: Adapterのクラス名, 例：`BUDAdmob_RewardCustomEventAdapter`
 
- - `{"placementID":"your slotID"}`を`Parameter`枠に追加します。
+- `{"placementID":"your slotID"}`を`Parameter`枠に追加します。
 
    - **Parameter**: {"placementID":"[your placement ID on Pangle](#placementID)"}のJSON形式, 例：`{"placementID": "1234567"}`
 <br>

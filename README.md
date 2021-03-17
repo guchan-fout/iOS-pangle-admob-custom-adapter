@@ -8,6 +8,6 @@
 
 日本語バージョンは下記を参考してください。
 
-- [Pangle SDKとAdaptersのインテグレーション](manual/jp.md)
+- [Pangle SDKとAdaptersのインテグレーション](manual/ja.md)
 
 - [Demo app](AdmobAdapterDemo)もご参考いただけます。
