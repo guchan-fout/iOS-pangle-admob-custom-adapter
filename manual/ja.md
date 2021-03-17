@@ -8,7 +8,7 @@
 
 <a name="setup-pangle"></a>
 ## Pangleプラットフォームのセットアップ
-### Pangleアカウントを作成する
+### Pangleアカウントを作成
 
 - [Pangleアカウント](https://ad.oceanengine.com/union/media/login)をお持ちでない場合は作成してください。
 
