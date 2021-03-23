@@ -7,11 +7,8 @@
 //
 
 #import "BUDAdmob_RewardCustomEventAdapter.h"
-#import <BUAdSDK/BURewardedVideoModel.h>
-#import <BUAdSDK/BURewardedVideoAd.h>
 #import <BUAdSDK/BUAdSDK.h>
 #import "BUDAdmob_PangleTool.h"
-
 
 @interface BUDAdmob_RewardCustomEventAdapter ()<BURewardedVideoAdDelegate,GADMediationRewardedAd>
 {
@@ -31,8 +28,8 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
 
 #pragma mark - GADMediationAdapter
 /// Returns the adapter version.
-+ (GADVersionNumber)adapterVersion {
-    NSString *versionString = @"1.2.1";
++ (GADVersionNumber)adapterVersion{
+    NSString *versionString = @"1.3.0";
     NSArray *versionComponents = [versionString componentsSeparatedByString:@"."];
     GADVersionNumber version = {0};
     if (versionComponents.count == 3) {
@@ -62,13 +59,12 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
     return Nil;
 }
 
-- (void)loadRewardedAdForAdConfiguration: (nonnull GADMediationRewardedAdConfiguration *)adConfiguration
+- (void)loadRewardedAdForAdConfiguration:
+(nonnull GADMediationRewardedAdConfiguration *)adConfiguration
                        completionHandler:
 (nonnull GADMediationRewardedLoadCompletionHandler)completionHandler {
     // Look for the "parameter" key to fetch the parameter you defined in the AdMob UI.
     BURewardedVideoModel *model = [[BURewardedVideoModel alloc] init];
-    //User ID, a required parameter for rewarded video ads
-    model.userId = @"your app user id";
     NSDictionary<NSString *, id> *credentials = adConfiguration.credentials.settings;
     NSString *placementID = [self processParams:(credentials[@"parameter"])];
     NSLog(@"placementID=%@",placementID);
@@ -82,6 +78,7 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
         self.completionHandler = completionHandler;
     } else {
         NSLog(@"no pangle placement ID for requesting.");
+        [self.delegate didFailToPresentWithError:[NSError errorWithDomain:@"error placementID" code:-1 userInfo:nil]];
     }
 }
 
@@ -115,7 +112,7 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
     NSLog(@"%s", __func__);
 }
 
-- (void)rewardedVideoAdDidVisible:(BURewardedVideoAd *)rewardedVideoAd{
+- (void)rewardedVideoAdDidVisible:(BURewardedVideoAd *)rewardedVideoAd {
     [self.delegate reportImpression];
     [self.delegate didStartVideo];
     NSLog(@"%s", __func__);
@@ -141,23 +138,33 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
     NSLog(@"%s", __func__);
 }
 
+- (void)rewardedVideoAdServerRewardDidFail:(BURewardedVideoAd *)rewardedVideoAd error:(NSError *)error {
+    NSLog(@"%s", __func__);
+}
 
 - (void)rewardedVideoAdServerRewardDidSucceed:(BURewardedVideoAd *)rewardedVideoAd verify:(BOOL)verify {
-    NSNumber *amount = [NSDecimalNumber numberWithInteger:rewardedVideoAd.rewardedVideoModel.rewardAmount];
-    
-    GADAdReward *aReward =
-    [[GADAdReward alloc] initWithRewardType:@""
-                               rewardAmount:[NSDecimalNumber decimalNumberWithDecimal:[amount decimalValue]]];
-    
-    [self.delegate didRewardUserWithReward:aReward];
+    if (verify) {
+        NSNumber *amount = [NSDecimalNumber numberWithInteger:rewardedVideoAd.rewardedVideoModel.rewardAmount];
+        
+        GADAdReward *aReward =
+        [[GADAdReward alloc] initWithRewardType:@""
+                                   rewardAmount:[NSDecimalNumber decimalNumberWithDecimal:[amount decimalValue]]];
+        
+        [self.delegate didRewardUserWithReward:aReward];
+    }
     NSLog(@"%s", __func__);
 }
 
 
 - (NSString *)processParams:(NSString *)param {
+    if (!param) {
+        return nil;
+    }
     NSError *jsonReadingError;
     NSData *data = [param dataUsingEncoding:NSUTF8StringEncoding];
-    
+    if (!data) {
+        return nil;
+    }
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                          options:NSJSONReadingAllowFragments
                                                            error:&jsonReadingError];

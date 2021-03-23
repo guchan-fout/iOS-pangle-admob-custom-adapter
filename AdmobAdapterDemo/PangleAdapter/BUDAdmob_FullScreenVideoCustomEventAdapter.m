@@ -33,6 +33,7 @@ NSString *const INTERSTITIAL_PANGLE_PLACEMENT_ID = @"placementID";
         [self.fullScreenVideo loadAdData];
     } else {
         NSLog(@"no pangle placement ID for requesting.");
+        [self.delegate customEventInterstitial:self didFailAd:[NSError errorWithDomain:@"error placementID" code:-1 userInfo:nil]];
     }
 }
 
@@ -52,12 +53,11 @@ NSString *const INTERSTITIAL_PANGLE_PLACEMENT_ID = @"placementID";
 }
 
 - (void)fullscreenVideoAdWillVisible:(BUFullscreenVideoAd *)fullscreenVideoAd{
-    NSLog(@"%s",__func__);
+    [self.delegate customEventInterstitialWillPresent:self];
 }
 
 - (void)fullscreenVideoAdDidVisible:(BUFullscreenVideoAd *)fullscreenVideoAd{
     NSLog(@"%s",__func__);
-    [self.delegate customEventInterstitialWillPresent:self];
 }
 
 - (void)fullscreenVideoAdDidClick:(BUFullscreenVideoAd *)fullscreenVideoAd{
@@ -85,12 +85,18 @@ NSString *const INTERSTITIAL_PANGLE_PLACEMENT_ID = @"placementID";
 }
 
 - (NSString *)processParams:(NSString *)param {
+    if (!param) {
+        return nil;
+    }
     NSError *jsonReadingError;
     NSData *data = [param dataUsingEncoding:NSUTF8StringEncoding];
-    
+    if (!data) {
+        return nil;
+    }
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                          options:NSJSONReadingAllowFragments
                                                            error:&jsonReadingError];
+    
     
     if (jsonReadingError) {
         NSLog(@"jsonReadingError. data=[%@], error=[%@]", json, jsonReadingError);

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+//native adapter
 @interface BUDAdmob_NativeFeedCustomEventAdapter : NSObject 
 
 

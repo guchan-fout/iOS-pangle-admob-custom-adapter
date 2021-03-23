@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
+//rewardedvideo ad adapter
 @interface BUDAdmob_RewardCustomEventAdapter : NSObject<GADMediationAdapter>
 
 - (NSString *)processParams:(NSString *)param;

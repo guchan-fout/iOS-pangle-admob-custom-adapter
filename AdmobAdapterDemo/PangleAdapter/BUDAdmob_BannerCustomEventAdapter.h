@@ -2,8 +2,8 @@
 //  BUDAdmob_BannerCustomEventAdapter.h
 //  AdmobAdapterDemo
 //
-//  Created by Chan Gu on 2020/09/04.
-//  Copyright © 2020 GuChan. All rights reserved.
+//  Created by bytedance on 2020/9/28.
+//  Copyright © 2020 bytedance. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
