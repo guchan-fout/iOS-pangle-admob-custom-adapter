@@ -157,7 +157,7 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
 
 
 - (NSString *)processParams:(NSString *)param {
-    if (!param) {
+    if (!(param && [param isKindOfClass:[NSString class]] && param.length > 0)) {
         return nil;
     }
     NSError *jsonReadingError;
@@ -169,13 +169,13 @@ NSString *const REWARD_PANGLE_PLACEMENT_ID = @"placementID";
                                                          options:NSJSONReadingAllowFragments
                                                            error:&jsonReadingError];
     
-    if (jsonReadingError) {
-        NSLog(@"jsonReadingError. data=[%@], error=[%@]", json, jsonReadingError);
+    if (jsonReadingError && [jsonReadingError isKindOfClass:[NSError class]]) {
+        NSLog(@"jsonReadingError. error=[%@]", jsonReadingError);
         return nil;
     }
     
-    if (![NSJSONSerialization isValidJSONObject:json]) {
-        NSLog(@"This is NOT JSON data.[%@]", json);
+    if (!(json && [json isKindOfClass:[NSDictionary class]] && [NSJSONSerialization isValidJSONObject:json])) {
+        NSLog(@"Params Error");
         return nil;
     }
     NSString *placementID = json[REWARD_PANGLE_PLACEMENT_ID];

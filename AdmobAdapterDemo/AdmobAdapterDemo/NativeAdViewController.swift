@@ -24,6 +24,8 @@ class NativeAdViewController: UIViewController {
     /// The height constraint applied to the ad view, where necessary.
     var heightConstraint: NSLayoutConstraint?
     
+    var imageOptions = GADNativeAdImageAdLoaderOptions()
+    
     
     @IBAction func onBackClick(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -33,9 +35,13 @@ class NativeAdViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        // here to set if download image by adapter or app
+        imageOptions.disableImageLoading = true
+        
         adLoader = GADAdLoader(
             adUnitID: adUnitID, rootViewController: self,
-            adTypes: [.native], options: nil)
+            adTypes: [.native], options: [imageOptions])
         adLoader.delegate = self
         adLoader.load(GADRequest())
         
@@ -78,8 +84,6 @@ class NativeAdViewController: UIViewController {
                 options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDictionary)
         )
     }
-    
-    
 }
 
 extension NativeAdViewController: GADAdLoaderDelegate {
@@ -148,8 +152,26 @@ extension NativeAdViewController: GADNativeAdLoaderDelegate {
         (nativeAdView.callToActionView as? UIButton)?.setTitle(nativeAd.callToAction, for: .normal)
         nativeAdView.callToActionView?.isHidden = nativeAd.callToAction == nil
         
-        (nativeAdView.iconView as? UIImageView)?.image = nativeAd.icon?.image
+        
+        if (imageOptions.disableImageLoading == true) {
+
+            // download icon image
+            (nativeAdView.iconView as? UIImageView)?.image = loadImage(nativeAd.icon?.imageURL)
+
+            if (!mediaContent.hasVideoContent) {
+                //download ad main image
+                let adImage = loadImage(nativeAd.images?[0].imageURL)
+                let adImageView = UIImageView.init(frame: CGRect(x: 0, y: 0, width: (nativeAdView.imageView?.frame.width)!, height: (nativeAdView.imageView?.frame.height)!))
+                adImageView.image = adImage
+                nativeAdView.imageView?.addSubview(adImageView)
+            }
+        } else {
+            (nativeAdView.iconView as? UIImageView)?.image = nativeAd.icon?.image
+            (nativeAdView.imageView as? UIImageView)?.image = nativeAd.images?[0].image
+        }
         nativeAdView.iconView?.isHidden = nativeAd.icon == nil
+        nativeAdView.imageView?.isHidden = nativeAd.images == nil
+    
         
         
         (nativeAdView.storeView as? UILabel)?.text = nativeAd.store
@@ -168,7 +190,22 @@ extension NativeAdViewController: GADNativeAdLoaderDelegate {
         // required to make the ad clickable.
         // Note: this should always be done after populating the ad views.
         nativeAdView.nativeAd = nativeAd
-        
+    }
+
+    func loadImage(_ url: URL?) -> UIImage? {
+        var data: Data? = nil
+        if let url = url {
+            do {
+                data = try Data(contentsOf: url)
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        var image: UIImage? = nil
+        if let data = data {
+            image = UIImage(data: data)
+        }
+        return image
     }
 }
 
