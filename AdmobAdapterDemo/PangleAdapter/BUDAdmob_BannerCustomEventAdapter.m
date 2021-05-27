@@ -40,7 +40,9 @@ NSString *const BANNER_PANGLE_PLACEMENT_ID = @"placementID";
     /// tag
     [BUDAdmob_PangleTool setPangleExtData];
     
+    ///If this method is not available in your SDK version, use the annotated method below
     self.nativeExpressBannerView = [[BUNativeExpressBannerView alloc] initWithSlotID:placementID rootViewController:self.delegate.viewControllerForPresentingModalView adSize:CGSizeMake(adSize.size.width, adSize.size.height)];
+//    self.nativeExpressBannerView = [[BUNativeExpressBannerView alloc] initWithSlotID:placementID rootViewController:self.delegate.viewControllerForPresentingModalView adSize:CGSizeMake(adSize.size.width, adSize.size.height) IsSupportDeepLink:YES];
     
     self.nativeExpressBannerView.frame = CGRectMake(0, 0, adSize.size.width, adSize.size.height);
     self.nativeExpressBannerView.delegate = self;
@@ -83,7 +85,7 @@ NSString *const BANNER_PANGLE_PLACEMENT_ID = @"placementID";
 
 #pragma mark - private method
 - (NSString *)processParams:(NSString *)param {
-    if (!param) {
+    if (!(param && [param isKindOfClass:[NSString class]] && param.length > 0)) {
         return nil;
     }
     NSError *jsonReadingError;
@@ -95,13 +97,13 @@ NSString *const BANNER_PANGLE_PLACEMENT_ID = @"placementID";
                                                          options:NSJSONReadingAllowFragments
                                                            error:&jsonReadingError];
     
-    if (jsonReadingError) {
-        NSLog(@"jsonReadingError. data=[%@], error=[%@]", json, jsonReadingError);
+    if (jsonReadingError && [jsonReadingError isKindOfClass:[NSError class]]) {
+        NSLog(@"jsonReadingError. error=[%@]", jsonReadingError);
         return nil;
     }
     
-    if (![NSJSONSerialization isValidJSONObject:json]) {
-        NSLog(@"This is NOT JSON data.[%@]", json);
+    if (!(json && [json isKindOfClass:[NSDictionary class]] && [NSJSONSerialization isValidJSONObject:json])) {
+        NSLog(@"Params Error");
         return nil;
     }
     NSString *placementID = json[BANNER_PANGLE_PLACEMENT_ID];

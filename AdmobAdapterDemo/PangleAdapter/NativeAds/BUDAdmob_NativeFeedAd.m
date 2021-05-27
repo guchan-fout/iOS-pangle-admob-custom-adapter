@@ -40,18 +40,27 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
             }
             // main image of the ad
             if (data.imageAry && data.imageAry.count && data.imageAry[0].imageURL != nil){
-                GADNativeAdImage *adImage = [[GADNativeAdImage alloc] initWithImage:[self loadImage:self.nativeAd.data.imageAry[0].imageURL]];
-                self.mappedImages = @[adImage];
+                self.mappedImages = @[[self getImage:data.imageAry[0].imageURL disableLoading:disableImageLoading]];
             }
             
             // icon image of the ad
             if (data.icon && data.icon.imageURL != nil){
-                GADNativeAdImage *iconImage = [[GADNativeAdImage alloc] initWithImage:[self loadImage:self.nativeAd.data.icon.imageURL]];
-                self.mappedIcon = iconImage;
+                self.mappedIcon = [self getImage:self.nativeAd.data.icon.imageURL disableLoading:disableImageLoading];
             }
         }
     }
     return self;
+}
+
+- (GADNativeAdImage *)getImage:(NSString *)urlString disableLoading:(Boolean)disableImageLoading {
+    GADNativeAdImage *image;
+    if (disableImageLoading) {
+        // here will only return a image url, the publisher need to load the image from the url
+        image = [[GADNativeAdImage alloc] initWithURL:[NSURL URLWithString:urlString] scale:[UIScreen mainScreen].scale];
+    } else {
+        image = [[GADNativeAdImage alloc] initWithImage:[self loadImage:self.nativeAd.data.imageAry[0].imageURL]];
+    }
+    return image;
 }
 
 - (UIImage *)loadImage:(NSString *)urlString {
@@ -115,7 +124,6 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 }
 
 - (GADNativeAdImage *)icon {
-    
     return self.mappedIcon;
 }
 
@@ -166,3 +174,4 @@ static NSString *const BUDNativeAdTranslateKey = @"bu_nativeAd";
 }
 
 @end
+

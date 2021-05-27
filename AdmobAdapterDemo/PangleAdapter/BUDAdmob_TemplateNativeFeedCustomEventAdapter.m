@@ -159,7 +159,7 @@ NSString *const TEMPLATE_FEED_PANGLE_PLACEMENT_ID = @"placementID";
     }
     
     if (![NSJSONSerialization isValidJSONObject:json]) {
-        NSLog(@"This is NOT JSON data.[%@]", json);
+        NSLog(@"This is NOT JSON data.");
         return nil;
     }
     NSString *placementID = json[TEMPLATE_FEED_PANGLE_PLACEMENT_ID];
