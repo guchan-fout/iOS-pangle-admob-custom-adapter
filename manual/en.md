@@ -67,7 +67,7 @@
     - **Class Name**: the adapter class's name , for example,`BUDAdmob_RewardCustomEventAdapter`
 
 - Add `{"placementID":"your slot ID"}` to Parameter.
-    - **Parameter**: Add {"placementID":"[your placement ID on Pangle](#placementID)"} to Parameter , for example,`{"placementID": "1234567"`
+    - **Parameter**: Add {"placementID":"[your placement ID on Pangle](#placementID)"} to Parameter , for example,`{"placementID": "1234567"}`
 <br>
 <img src="./pics/mediation-param.png" alt="drawing" width="400"/>
 
