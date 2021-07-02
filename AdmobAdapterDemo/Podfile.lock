@@ -1,22 +1,22 @@
 PODS:
-  - Ads-Global (3.5.1.2):
-    - Ads-Global/BUAdSDK (= 3.5.1.2)
-  - Ads-Global/BUAdSDK (3.5.1.2):
+  - Ads-Global (3.7.0.5):
+    - Ads-Global/BUAdSDK (= 3.7.0.5)
+  - Ads-Global/BUAdSDK (3.7.0.5):
     - Ads-Global/BUFoundation
     - Ads-Global/International
-  - Ads-Global/BUFoundation (3.5.1.2)
-  - Ads-Global/International (3.5.1.2)
-  - Google-Mobile-Ads-SDK (8.5.0):
+  - Ads-Global/BUFoundation (3.7.0.5)
+  - Ads-Global/International (3.7.0.5)
+  - Google-Mobile-Ads-SDK (8.6.0):
     - GoogleAppMeasurement (< 9.0, >= 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
-  - GoogleAppMeasurement (8.0.0):
-    - GoogleAppMeasurement/AdIdSupport (= 8.0.0)
+  - GoogleAppMeasurement (8.2.0):
+    - GoogleAppMeasurement/AdIdSupport (= 8.2.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
     - GoogleUtilities/MethodSwizzler (~> 7.4)
     - GoogleUtilities/Network (~> 7.4)
     - "GoogleUtilities/NSData+zlib (~> 7.4)"
     - nanopb (~> 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (8.0.0):
+  - GoogleAppMeasurement/AdIdSupport (8.2.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
     - GoogleUtilities/MethodSwizzler (~> 7.4)
     - GoogleUtilities/Network (~> 7.4)
@@ -62,9 +62,9 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Ads-Global: 6f4b69a2e41c58cb1fa1203355d47f67b5c26db0
-  Google-Mobile-Ads-SDK: 6f5c41bf73db1656e5b203ba9c31e3d0899a128d
-  GoogleAppMeasurement: c6bbc9753d046b5456dd4f940057fbad2c28419e
+  Ads-Global: 76f99de21f9f25d5d467b2b896efb47c155c8983
+  Google-Mobile-Ads-SDK: 0d6e2e065c4efe9836bca3fbd6ff9ef0bca073c2
+  GoogleAppMeasurement: b52eafc9dff542d580700e708216568bd2fbf168
   GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
