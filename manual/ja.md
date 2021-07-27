@@ -76,6 +76,8 @@
 - `{"placementID":"your slotID"}`を`Parameter`枠に追加します。
 
    - **Parameter**: {"placementID":"[your placement ID on Pangle](#placementID)"}のJSON形式, 例：`{"placementID": "1234567"}`
+
+   - **必ずJSON形式でパラメータを設定してください。または、アダプターを自分でカスタマイズする必要があります。**
 <br>
 <img src="./pics/mediation-param.png" alt="drawing" width="400"/>
 
@@ -88,7 +90,7 @@
 
 
 
-**必ずJSON形式でパラメータを設定してください。または、アダプターを自分でカスタマイズする必要があります。**
+
 
 <a name="import-pangle"></a>
 ## Pangle SDKとAdapterの導入と初期化
