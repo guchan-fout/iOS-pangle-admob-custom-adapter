@@ -2,15 +2,22 @@
 
 > [Admob](https://developers.google.com/admob/ios/quick-start) を先に設定してください。
 
-* [Pangleプラットフォームのセットアップ](#setup-pangle)
-* [AdMobのmediationにPangleを追加](#add-pangle)
-* [Pangle SDKとAdapterの導入と初期化](#import-pangle)
+* 導入に必要な手順
+  * [Pangleプラットフォームのセットアップ](#setup-pangle)
+  * [AdMobのmediationにPangleを追加](#add-pangle)
+    * [各広告フォマートに対応するアダプター](#adapter-file)
+  * [Pangle SDKとAdapterの導入と初期化](#import-pangle)
+    * [Pangle SDKの導入と初期化](#import-sdk)
+    * [Pangle Adaptersの導入](#import-adapter)
+    * [各広告フォマートに対応するアダプター](#adapter-file)
+* [Swiftについて](#adapter-swift)
+* [Demo](#adapter-demo)
 
 <a name="setup-pangle"></a>
 ## Pangleプラットフォームのセットアップ
 ### Pangleアカウントを作成
 
-- [Pangleアカウント](https://ad.oceanengine.com/union/media/login)をお持ちでない場合は作成してください。
+- [Pangleアカウント](https://www.pangleglobal.com/jp)をお持ちでない場合は作成してください。
 
 
 ### Pangleでアプリケーションとプレースメントを作成
@@ -22,7 +29,7 @@
 <img src="./pics/create-app.png" alt="drawing" width="300"/>
 
 <a name="app-id"></a>
-- `app ID`が付いたアプリが作成されます。
+- `app ID`付いたアプリが作成されます。
 <br>
 <img src="./pics/app-id.png" alt="drawing" width="400"/>
 
@@ -72,33 +79,66 @@
 <br>
 <img src="./pics/mediation-param.png" alt="drawing" width="400"/>
 
+<a name="adapter-file"></a>
+### 各広告フォマートに対応するクラス名
+- 動画リワード広告:`BUDAdmob_RewardCustomEventAdapter`
+- インタースティシャル(フルスクリーン動画)広告:`BUDAdmob_FullScreenVideoCustomEventAdapter`
+- バナー広告:`BUDAdmob_BannerCustomEventAdapter`
+- ネイティブ広告:`BUDAdmob_NativeFeedCustomEventAdapter`
+
+
 
 **必ずJSON形式でパラメータを設定してください。または、アダプターを自分でカスタマイズする必要があります。**
 
 <a name="import-pangle"></a>
 ## Pangle SDKとAdapterの導入と初期化
 
+<a name="import-sdk"></a>
 ### Pangle SDKの導入と初期化
-- [SDKの導入](https://www.pangleglobal.com/help/doc/6034ac60511c57004360ff72)
-と [SDKの初期化](https://www.pangleglobal.com/help/doc/6034ac73511c57004360ff76)に従ってPangle SDKのインテグレーションを完了します。
+Podfileに以下のように記入し `pod install` することでSDKを自動導入してください。
 
- * **[app ID](#app-id)を使用してPangleSDKを初期化してください。**
+```
+pod 'Ads-Global'
+```
 
+SDKの初期化
+Pangle管理画面で作成した `APP ID` を引数に、 Pangle SDK を初期化してください。特別な理由が無い限り、
+[UIApplicationDelegate application(_:didFinishLaunchingWithOptions:)](https://developer.apple.com/documentation/uikit/uiapplicationdelegate?language=swift#topics)に記述して下さい。
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+    BUAdSDKManager.setAppID("your_app_id")
+
+    return true
+}
+```
+
+手動導入や初期パラメータの設定などは[SDKの導入](https://www.pangleglobal.com/help/doc/6034ac60511c57004360ff72)
+と [SDKの初期化](https://www.pangleglobal.com/help/doc/6034ac73511c57004360ff76)をご参照ください。
+
+
+<a name="import-adapter"></a>
 ### Pangle Adaptersの導入
-- Pangleプラットフォームから、`SDK Integration` -> `SDK download`をクリックすると、各広告フォーマット用のアダプターをダウンロードでき、アダプターファイルをアプリに導入すればコードを変更せずに使用できます。また、ユースケースに合わせてカスタマイズすることもできます。
+Pangleプラットフォームから、`SDK Integration` -> `SDK download`からアダプターファイルをダウンロードしてください。
 <br>
 <img src="./pics/mediation.png" alt="drawing" width="400"/>
 <br>
 <img src="./pics/adapter-download.png" alt="drawing" width="400"/>
 
+圧縮ファイルを解凍後にiOS用のアダプターファイルをアプリに導入すればコードを変更せずに使用できます。また、ユースケースに合わせてカスタマイズすることもできます。
+* ネイティブ広告アダプターの[mapping](https://developers.google.com/admob/ios/native/native-custom-events#map_native_ads)をサポートするには、`BUDAdmob_NativeFeedAd.h`と`BUDAdmob_NativeFeedAd.m`をプロジェクトに追加する必要があります。
 
-- [Demo](../AdmobAdapterDemo)から簡単な使用例を確認できます。
+<img src="./pics/adapter-files.png" alt="drawing" width="400"/>
 
-- ネイティブ広告のアダプターの[mapping](https://developers.google.com/admob/ios/native/native-custom-events#map_native_ads)をサポートするには、下記2つのファイルをプロジェクトに追加する必要があります。
-<br>
-<img src="./pics/native-ads-folder.png" alt="drawing" width="400"/>
 
-### Swiftについて
+<a name="adapter-swift"></a>
+## Swiftについて
 - プロジェクトがSwiftに基づいている場合は、アダプタのヘッダーファイルをブリッジヘッダーファイルに追加してください。
 <br>
 <img src="./pics/bridge-header.png" alt="drawing" width="400"/>
+
+
+<a name="adapter-demo"></a>
+## Demo
+- [Demo](https://github.com/bytedance/Bytedance-UnionAD/tree/master/Demo)から簡単な使用例を確認できます。
