@@ -112,7 +112,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 Please refer to [Integrate Pangle SDK](https://www.pangleglobal.com/help/doc/6034ac60511c57004360ff72)
 and [Initialize Pangle SDK](https://www.pangleglobal.com/help/doc/6034ac73511c57004360ff76) for manual integration and more information.
 
-
+<a name="import-adapter"></a>
 ### Embed Pangle Adapters
 - Click `SDK Integration` -> `SDK download`, you can download adapters for different ad formats from your Pangle platform.
 <br>
