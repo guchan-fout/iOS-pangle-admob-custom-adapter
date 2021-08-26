@@ -123,7 +123,7 @@ and [Initialize Pangle SDK](https://www.pangleglobal.com/help/doc/6034ac73511c57
 
 
 
-<a name="#import-adapter-pod"></a>
+<a name="import-adapter-pod"></a>
 #### CocoaPods (preferred)
 From our adapter v1.4.1, we support CocoaPods integration, and this is the prerequisite for using it.
 
@@ -135,7 +135,7 @@ Add the information as follows in Podfile, and using `pod update` or `pod instal
 pod 'Pangle-adapter-for-admob'
 ```
 
-<a name="#import-adapter-manual"></a>
+<a name="import-adapter-manual"></a>
 #### Manual download
 - Click `SDK Integration` -> `SDK download`, you can download adapters for different ad formats from your Pangle platform.
 <br>

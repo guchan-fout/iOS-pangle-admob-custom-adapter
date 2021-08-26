@@ -125,7 +125,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 <a name="import-adapter"></a>
 ### Pangle Adaptersの導入
 
-<a name="#import-adapter-pod"></a>
+<a name="import-adapter-pod"></a>
 #### CocoaPods (推奨)
 Adapter v1.4.1 からCocoaPodsよりの導入をサポートします。それを使用するための前提条件は以下です。
 
@@ -138,7 +138,7 @@ Podfileに以下のように記入し `pod install`　または　`pod install` 
 pod 'Pangle-adapter-for-admob'
 ```
 
-<a name="#import-adapter-manual"></a>
+<a name="import-adapter-manual"></a>
 #### 手動導入
 Pangleプラットフォームから、`SDK Integration` -> `SDK download`からアダプターファイルをダウンロードしてください。
 <br>
