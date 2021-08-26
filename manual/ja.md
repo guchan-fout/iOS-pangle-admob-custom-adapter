@@ -99,7 +99,7 @@
 
 <a name="import-sdk"></a>
 ### Pangle SDKの導入と初期化
-Podfileに以下のように記入し `pod install`　または　`pod install` することでSDKを自動導入してください。
+Podfileに以下のように記入し `pod update`　または　`pod install` することでSDKを自動導入してください。
 
 ```
 pod 'Ads-Global'
