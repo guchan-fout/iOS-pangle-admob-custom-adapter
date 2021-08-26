@@ -12,6 +12,7 @@ target 'AdmobAdapterDemo' do
   use_frameworks!
   pod 'Google-Mobile-Ads-SDK'
   pod 'Ads-Global'
+  pod 'Pangle-adapter-for-admob'
   #pod 'Google-Mobile-Ads-SDK'
 
 

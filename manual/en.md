@@ -9,6 +9,8 @@
   * [Initialize Pangle SDK and adapters](#import-pangle)
     * [Pangle SDK's integration and initialize](#import-sdk)
     * [Embed Pangle adapters](#import-adapter)
+        * [CocoaPods](#import-adapter-pod)
+        * [Manual Download](#import-adapter-manual)
 * [About Swift](#adapter-swift)
 * [Demo](#adapter-demo)
 
@@ -81,17 +83,21 @@
 
 <a name="adapter-file"></a>
 ### Class name for different ad formats
-- Reward Video Ads:`BUDAdmob_RewardCustomEventAdapter`
-- Interstitial(Fullscreen Video) Ads:`BUDAdmob_FullScreenVideoCustomEventAdapter`
-- Banner Ads:`BUDAdmob_BannerCustomEventAdapter`
-- Native Ads:`BUDAdmob_NativeFeedCustomEventAdapter`
+
+|  Ad Type  |  Class Name  |
+| ---- | ---- |
+|  Reward Video Ads  |  BUDAdmob_RewardCustomEventAdapter  |
+|  Interstitial(Fullscreen Video) Ads  |  BUDAdmob_FullScreenVideoCustomEventAdapter  |
+|  Banner Ads  |  BUDAdmob_BannerCustomEventAdapter  |
+|  Native Ads  |  BUDAdmob_NativeFeedCustomEventAdapter  |
+
 
 <a name="import-pangle"></a>
 ## Initialize Pangle SDK and Adapter
 
 <a name="import-sdk"></a>
 ### Import and Init Pangle SDK
-Add the information as follows in Podfile, and using `pod install` to intergrate.
+Add the information as follows in Podfile, and using `pod update` or `pod install`  to intergrate.
 ```
 pod 'Ads-Global'
 ```
@@ -114,6 +120,23 @@ and [Initialize Pangle SDK](https://www.pangleglobal.com/help/doc/6034ac73511c57
 
 <a name="import-adapter"></a>
 ### Embed Pangle Adapters
+
+
+
+<a name="#import-adapter-pod"></a>
+#### CocoaPods (preferred)
+From our adapter v1.4.1, we support CocoaPods integration, and this is the prerequisite for using it.
+
+- Pangle SDK 3.7.0.0 or higher
+- Google-Mobile-Ads-SDK 8.0.0 or higher
+
+Add the information as follows in Podfile, and using `pod update` or `pod install`  to intergrate.
+```
+pod 'Pangle-adapter-for-admob'
+```
+
+<a name="#import-adapter-manual"></a>
+#### Manual download
 - Click `SDK Integration` -> `SDK download`, you can download adapters for different ad formats from your Pangle platform.
 <br>
 <img src="./pics/mediation.png" alt="drawing" width="400"/>

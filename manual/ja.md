@@ -9,6 +9,8 @@
   * [Pangle SDKとAdapterの導入と初期化](#import-pangle)
     * [Pangle SDKの導入と初期化](#import-sdk)
     * [Pangle Adaptersの導入](#import-adapter)
+      * [CocoaPods](#import-adapter-pod)
+      * [手動導入](#import-adapter-manual)
 * [Swiftについて](#adapter-swift)
 * [Demo](#adapter-demo)
 
@@ -82,12 +84,13 @@
 
 <a name="adapter-file"></a>
 ### 各広告フォマートに対応するクラス名
-- 動画リワード広告:`BUDAdmob_RewardCustomEventAdapter`
-- インタースティシャル(フルスクリーン動画)広告:`BUDAdmob_FullScreenVideoCustomEventAdapter`
-- バナー広告:`BUDAdmob_BannerCustomEventAdapter`
-- ネイティブ広告:`BUDAdmob_NativeFeedCustomEventAdapter`
 
-
+|  広告タイプ  |  Class Name  |
+| ---- | ---- |
+|  動画リワード広告  |  BUDAdmob_RewardCustomEventAdapter  |
+|  インタースティシャル(フルスクリーン動画)広告  |  BUDAdmob_FullScreenVideoCustomEventAdapter  |
+|  バナー広告 |  BUDAdmob_BannerCustomEventAdapter  |
+|  ネイティブ広告  |  BUDAdmob_NativeFeedCustomEventAdapter  |
 
 
 
@@ -96,7 +99,7 @@
 
 <a name="import-sdk"></a>
 ### Pangle SDKの導入と初期化
-Podfileに以下のように記入し `pod install` することでSDKを自動導入してください。
+Podfileに以下のように記入し `pod install`　または　`pod install` することでSDKを自動導入してください。
 
 ```
 pod 'Ads-Global'
@@ -121,6 +124,22 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 <a name="import-adapter"></a>
 ### Pangle Adaptersの導入
+
+<a name="#import-adapter-pod"></a>
+#### CocoaPods (推奨)
+Adapter v1.4.1 からCocoaPodsよりの導入をサポートします。それを使用するための前提条件は以下です。
+
+- Pangle SDK 3.7.0.0 以降
+- Google-Mobile-Ads-SDK 8.0.0 以降
+
+Podfileに以下のように記入し `pod install`　または　`pod install` することでSDKを自動導入してください。
+
+```
+pod 'Pangle-adapter-for-admob'
+```
+
+<a name="#import-adapter-manual"></a>
+#### 手動導入
 Pangleプラットフォームから、`SDK Integration` -> `SDK download`からアダプターファイルをダウンロードしてください。
 <br>
 <img src="./pics/mediation.png" alt="drawing" width="400"/>
