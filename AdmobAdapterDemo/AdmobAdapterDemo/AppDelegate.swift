@@ -17,7 +17,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // 5000546 for video
-        BUAdSDKManager.setAppID("5064663")
+        let configuration = BUAdSDKConfiguration()
+        
+        #if DEBUG
+        // enable log print. default is none.
+        configuration.logLevel = .debug
+        #endif
+        
+        configuration.appID = "5064663"
+        configuration.coppa = 0
+        configuration.gdpr = 0
+        
+        //Set to true to NOT interrupt background app's audio playback
+        configuration.allowModifyAudioSessionSetting = true
+        
+        BUAdSDKManager.start(asyncCompletionHandler:) { (success, error) in
+            if ((error) != nil) {
+                //init failed
+            }
+        };
+        
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         return true
